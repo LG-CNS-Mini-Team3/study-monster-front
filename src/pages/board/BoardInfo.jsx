@@ -4,6 +4,7 @@ import getBoardInfo from "../../api/board/getBoardInfo.js";
 import BoardHeader from "../../comopnents/board/BoardHeader.jsx";
 import BoardContent from "../../comopnents/board/BoardContent.jsx";
 import BoardTag from "../../comopnents/board/BoardTag.jsx";
+import usePageTitle from "../../utils/usePageTitle.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -45,6 +46,7 @@ const BoardInfo = () => {
     const [commentList, setCommentList] = useState(initCommentListData);
     const [tagList, setTagList] = useState(initTagListData);
     const commentComponentRef = useRef();
+    usePageTitle(`${boardInfo.title}`);
 
     useEffect(() => {
         callBoardInfoApi(boardId, setBoardInfo);
