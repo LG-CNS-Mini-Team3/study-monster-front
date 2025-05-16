@@ -13,7 +13,7 @@ import {
   HeaderRow,
   JoinButton,
   WriterSection,
-} from "./StudyGroupCard.styled";
+} from "./styles/StudyGroupCard.styled";
 import TagBadge from "./TagBadge";
 
 const StudyGroupCard = ({

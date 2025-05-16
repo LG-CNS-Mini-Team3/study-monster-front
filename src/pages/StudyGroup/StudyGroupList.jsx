@@ -1,6 +1,5 @@
-import React from "react";
-import StudyGroupCard from "./StudyGroupCard";
-import { ListContainer } from "./StudyGroupList.styled";
+import StudyGroupCard from "../../components/studyGroup/StudyGroupCard";
+import { ListContainer } from "./styles/StudyGroupList.styled";
 
 const dummyStudyGroups = [
   {
