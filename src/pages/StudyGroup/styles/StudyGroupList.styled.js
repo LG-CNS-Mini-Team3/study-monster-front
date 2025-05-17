@@ -1,8 +1,55 @@
 import styled from "styled-components";
 
-export const ListContainer = styled.div`
+export const PageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 48px 5cm;
+  box-sizing: border-box;
+`;
+
+export const HeaderSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const MainContainer = styled.div`
+  width: 100%;
+  max-width: 1024px;
+  padding: 0 4cm;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+`;
+export const ContentWrapper = styled.div`
+  width: 100%;
+  max-width: 768px;
   display: flex;
   flex-direction: column;
   gap: 24px;
-  padding: 40px;
+`;
+export const CardList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+`;
+
+export const PageTitle = styled.h2`
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+export const CreateButton = styled.button`
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #1565c0;
+  }
 `;

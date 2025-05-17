@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   CardContainer,
   MetaInfo,
@@ -25,8 +26,10 @@ const StudyGroupCard = ({
   current,
   capacity,
 }) => {
+  const navigate = useNavigate();
+
   return (
-    <CardContainer>
+    <CardContainer onClick={() => navigate(`/study-group/${id}`)}>
       <HeaderRow>
         <MetaInfo>마감일 | {deadline}</MetaInfo>
         <StatusBadge status={status}>{status}</StatusBadge>

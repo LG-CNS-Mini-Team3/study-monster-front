@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  width: 100%;
+  width: 80%;
   max-width: 640px;
   border: 1px solid #e0e0e0;
   border-radius: 16px;
@@ -88,7 +88,7 @@ export const BottomDivider = styled.hr`
   border: none;
   width: 100%;
   border-top: 1px solid #dcdcdc;
-  margin-top: 30px; /* ✅ 더 아래로 내리기 */
+  margin-top: 30px;
   margin-bottom: -5px;
 `;
 

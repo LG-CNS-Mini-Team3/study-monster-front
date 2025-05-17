@@ -1,5 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import StudyGroupCard from "../../components/studyGroup/StudyGroupCard";
-import { ListContainer } from "./styles/StudyGroupList.styled";
+import {
+  PageWrapper,
+  MainContainer,
+  HeaderSection,
+  PageTitle,
+  CreateButton,
+  CardList,
+} from "./styles/StudyGroupList.styled";
 
 const dummyStudyGroups = [
   {
@@ -18,21 +26,34 @@ const dummyStudyGroups = [
 ];
 
 const StudyGroupList = () => {
+  const navigate = useNavigate();
+
   return (
-    <ListContainer>
-      {dummyStudyGroups.map((group) => (
-        <StudyGroupCard
-          key={group.id}
-          title={group.title}
-          tags={group.tags}
-          status={group.status}
-          current={group.current}
-          capacity={group.capacity}
-          deadline={group.deadline}
-          writer={group.writer}
-        />
-      ))}
-    </ListContainer>
+    <PageWrapper>
+      <MainContainer>
+        <HeaderSection>
+          <PageTitle>스터디 그룹 모집</PageTitle>
+          <CreateButton onClick={() => navigate("/study-group/create")}>
+            스터디 만들기
+          </CreateButton>
+        </HeaderSection>
+
+        <CardList>
+          {dummyStudyGroups.map((group) => (
+            <StudyGroupCard
+              key={group.id}
+              title={group.title}
+              tags={group.tags}
+              status={group.status}
+              current={group.current}
+              capacity={group.capacity}
+              deadline={group.deadline}
+              writer={group.writer}
+            />
+          ))}
+        </CardList>
+      </MainContainer>
+    </PageWrapper>
   );
 };
 
