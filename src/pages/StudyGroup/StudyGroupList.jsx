@@ -1,6 +1,7 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import StudyGroupCard from "../../components/studyGroup/StudyGroupCard";
-import getStudyGroupList from "../../api/studygroup/getStudyList.api";
+import getStudyGroupList from "../../api/studyGroup/getStudyList";
 import {
   PageWrapper,
   MainContainer,
@@ -53,13 +54,16 @@ const StudyGroupList = () => {
           {studyGroups.map((group) => (
             <StudyGroupCard
               key={group.id}
-              title={group.title}
+              name={group.name}
               tags={group.tags}
               status={group.status}
               current={group.current}
-              capacity={group.capacity}
+              limit_members={group.limit_members}
               deadline={group.deadline}
-              writer={group.writer}
+              writer={{
+                nickname: group.nickname,
+                profileImage: group.profileImage,
+              }}
             />
           ))}
         </CardList>

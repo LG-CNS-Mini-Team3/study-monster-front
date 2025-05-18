@@ -18,13 +18,13 @@ import {
 import TagBadge from "./TagBadge";
 
 const StudyGroupCard = ({
-  title,
+  name,
   tags,
   deadline,
   status,
   writer,
   current,
-  capacity,
+  limit_members,
 }) => {
   const navigate = useNavigate();
 
@@ -37,7 +37,7 @@ const StudyGroupCard = ({
 
       <TopDivider />
 
-      <CardTitle>{title}</CardTitle>
+      <CardTitle>{name}</CardTitle>
 
       <TagList>
         {tags.map((tag, index) => (
@@ -45,7 +45,7 @@ const StudyGroupCard = ({
         ))}
       </TagList>
       <ParticipantStatus>
-        {current} / {capacity}명 참여중
+        {current} / {limit_members}명 참여중
       </ParticipantStatus>
 
       <BottomDivider />
