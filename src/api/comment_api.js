@@ -23,13 +23,10 @@ export const createComment = async (body) => {
 export const listComment = async (num) => {
   try {
     const res = await fetch(API_BASE_URL + "/list?board=" + num, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      method: "get"
     });
     if (res.ok) {
-      const data = res.json();
+      const data = await res.json();
       return data;
     } else {
       alert("보여주기 문제가 생겼습니다");
@@ -40,8 +37,24 @@ export const listComment = async (num) => {
   }
 };
 
-export const updateComment = async (num) => {
-    
+export const updateComment = async (body) => {
+    try{
+        const res = await fetch(API_BASE_URL + "/modify", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: body
+        })
+        if (res.ok) {
+            window.location.reload();
+        } else{
+            alert("수정 문제가 생겼습니다")
+        }
+    } catch(error) {
+        console.error("수정에라: ",error)
+        alert("수정 문제가 생겼습니다")
+    }
 }
 
 export const deleteComment = async (num) => {

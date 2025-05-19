@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-import {
-  createComment,
-  listComment,
-  deleteComment,
-} from "../../api/comment_api";
+import CommentItem from "./CommentItem";
+import { createComment, listComment } from "../../api/comment_api";
 
 const Comment = () => {
   const [comment, setComment] = useState("");
-
   const [comments, setComments] = useState([]);
-
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedContent, setEditedContent] = useState(content);
 
   useEffect(() => {
     async function temp() {
@@ -38,11 +31,11 @@ const Comment = () => {
             type="submit"
             disabled={!comment.trim()}
             className={`px-4 py-1 rounded 
-              ${
-                comment.trim()
-                  ? "bg-blue-600 text-white hover:bg-blue-700"
-                  : "bg-gray-300 text-gray-600 cursor-not-allowed"
-              }`}
+                  ${
+                    comment.trim()
+                      ? "bg-blue-600 text-white hover:bg-blue-700"
+                      : "bg-gray-300 text-gray-600 cursor-not-allowed"
+                  }`}
             onClick={(e) => {
               e.preventDefault();
               const body = {
@@ -57,37 +50,10 @@ const Comment = () => {
       </form>
       <ul>
         {comments.map((c) => (
-          <li id={c.id} key={c.id}>
-            <h3>{c.username}</h3>
-            <p>작성일시: {c.created_at}</p>
-            <p>수정일시: {c.updated_at}</p>
-            <p>{c.content}</p>
-            {isEditing ? (
-              <>
-                <textarea
-                  value={editedContent}
-                  onChange={(e) => setEditedContent(e.target.value)}
-                  rows={3}
-                  cols={50}
-                />
-                <br />
-                <button onClick={handleUpdate}>확인</button>
-                <button onClick={() => setIsEditing(false)}>취소</button>
-              </>
-            ) : (
-              <>
-                <p>{c.content}</p>
-                <button onClick={() => setIsEditing(true)}>수정</button>
-              </>
-            )}
-            <button
-              type="submit"
-              onClick={(e) => {
-                deleteComment(e.currentTarget.closest("li").id);
-              }}>
-              삭제
-            </button>
-          </li>
+          <CommentItem
+            key={c.id}
+            item = {c}
+          />
         ))}
       </ul>
     </div>
