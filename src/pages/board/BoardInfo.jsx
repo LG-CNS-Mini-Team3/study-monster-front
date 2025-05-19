@@ -72,7 +72,7 @@ const BoardInfo = () => {
             <BoardContent content={boardInfo.content}/>
             <BoardTag tagList={tagList}/>
             <div ref={commentComponentRef}/>
-            <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen}/>
+            <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId}/>
         </>
     )
 }

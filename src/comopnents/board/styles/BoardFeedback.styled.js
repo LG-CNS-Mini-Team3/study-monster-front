@@ -17,3 +17,11 @@ export const BoardFeedbackModalImg = styled.img`
         border: 1px solid rgba(0, 0, 0, 0.5);
     }
 `;
+
+export const FeedbackLoadingIndicatorContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: ${(props) => props.width};
+    height: ${(props) => props.height};
+`;
