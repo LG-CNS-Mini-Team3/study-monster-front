@@ -47,8 +47,8 @@ export const HeaderRow = styled.div`
 `;
 
 export const StatusBadge = styled.span`
-  background-color: ${({ status }) =>
-    status === "모집완료" ? "#d3d3d3" : "#4caf50"};
+  background-color: ${({ $status }) =>
+    $status === "모집완료" ? "#d3d3d3" : "#4caf50"};
   color: white;
   padding: 4px 12px;
   font-size: 12px;

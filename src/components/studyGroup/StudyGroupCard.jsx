@@ -32,7 +32,7 @@ const StudyGroupCard = ({
     <CardContainer onClick={() => navigate(`/study-group/detail`)}>
       <HeaderRow>
         <MetaInfo>마감일 | {deadline}</MetaInfo>
-        <StatusBadge status={status}>{status}</StatusBadge>
+        <StatusBadge $status={status}>{status}</StatusBadge>
       </HeaderRow>
 
       <TopDivider />

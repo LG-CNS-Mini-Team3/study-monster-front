@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import postCreateStudyGroup from "../../api/studyGroup/postCreateStudyGroup";
 import {
   Wrapper,
   SectionTitle,
@@ -18,24 +19,33 @@ const CreateStudyGroup = () => {
   const [name, setName] = useState("");
   const [limit_members, setlimit_members] = useState("");
   const [deadline, setDeadline] = useState("");
+  const [description, setDescription] = useState("");
   // const [tags, setTags] = useState([]);
   // const [inputTag, setInputTag] = useState("");
-  const [description, setDescription] = useState("");
 
   //  const handleAddTag = () => {
   //    todo : 태그 입력 추후 구현
   //  }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const newStudyData = {
       name,
+      description,
       limit_members,
       deadline,
-      tags,
-      description,
+      Nickname: "테스트",
+      // tags,
     };
-    console.log("제출 데이터:", newStudyData);
-    // TODO: 나중에 API 연동 추가
+
+    const { ok, data } = await postCreateStudyGroup(newStudyData);
+
+    if (ok) {
+      alert("스터디가 성공적으로 등록되었습니다!");
+      navigate("/study-group");
+    } else {
+      alert("스터디 등록에 실패했습니다.");
+      console.error("응답 데이터:", data);
+    }
   };
 
   return (
@@ -54,7 +64,7 @@ const CreateStudyGroup = () => {
       <InputRow>
         <label>모집 마감일</label>
         <TextInput
-          type="date"
+          type="datetime-local"
           value={deadline}
           onChange={(e) => setDeadline(e.target.value)}
         />
