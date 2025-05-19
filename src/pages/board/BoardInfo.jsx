@@ -5,6 +5,7 @@ import BoardHeader from "../../comopnents/board/BoardHeader.jsx";
 import BoardContent from "../../comopnents/board/BoardContent.jsx";
 import BoardTag from "../../comopnents/board/BoardTag.jsx";
 import usePageTitle from "../../utils/usePageTitle.js";
+import BoardFeedbackModal from "../../comopnents/board/BoardFeedbackModal.jsx";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -45,6 +46,7 @@ const BoardInfo = () => {
     const [boardInfo, setBoardInfo] = useState(initBoardData);
     const [commentList, setCommentList] = useState(initCommentListData);
     const [tagList, setTagList] = useState(initTagListData);
+    const [isModalOpen, setModalOpen] = useState(false);
     const commentComponentRef = useRef();
     usePageTitle(`${boardInfo.title}`);
 
@@ -70,6 +72,7 @@ const BoardInfo = () => {
             <BoardContent content={boardInfo.content}/>
             <BoardTag tagList={tagList}/>
             <div ref={commentComponentRef}/>
+            <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen}/>
         </>
     )
 }
