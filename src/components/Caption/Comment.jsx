@@ -1,18 +1,25 @@
-import React, { useEffect, useState } from "react"
-import { createComment, listComment } from "../../api/comment_api"
+import React, { useEffect, useState } from "react";
+import {
+  createComment,
+  listComment,
+  deleteComment,
+} from "../../api/comment_api";
 
 const Comment = () => {
-  const [comment, setComment] = useState("")
+  const [comment, setComment] = useState("");
 
-  const [comments, setComments] = useState([])
+  const [comments, setComments] = useState([]);
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState(content);
 
   useEffect(() => {
-    async function temp(){
-        const data = await listComment(1)
-        setComments(data)
+    async function temp() {
+      const data = await listComment(1);
+      setComments(data);
     }
-    temp()
-  }, [])
+    temp();
+  }, []);
 
   return (
     <div className="mt-4 border rounded-lg bg-white">
@@ -50,11 +57,36 @@ const Comment = () => {
       </form>
       <ul>
         {comments.map((c) => (
-          <li key={c.id}>
+          <li id={c.id} key={c.id}>
             <h3>{c.username}</h3>
             <p>작성일시: {c.created_at}</p>
             <p>수정일시: {c.updated_at}</p>
             <p>{c.content}</p>
+            {isEditing ? (
+              <>
+                <textarea
+                  value={editedContent}
+                  onChange={(e) => setEditedContent(e.target.value)}
+                  rows={3}
+                  cols={50}
+                />
+                <br />
+                <button onClick={handleUpdate}>확인</button>
+                <button onClick={() => setIsEditing(false)}>취소</button>
+              </>
+            ) : (
+              <>
+                <p>{c.content}</p>
+                <button onClick={() => setIsEditing(true)}>수정</button>
+              </>
+            )}
+            <button
+              type="submit"
+              onClick={(e) => {
+                deleteComment(e.currentTarget.closest("li").id);
+              }}>
+              삭제
+            </button>
           </li>
         ))}
       </ul>
