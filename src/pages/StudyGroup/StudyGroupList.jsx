@@ -11,22 +11,6 @@ import {
   CardList,
 } from "./styles/StudyGroupList.styled";
 
-// const dummyStudyGroups = [
-//   {
-//     id: 1,
-//     title: "알고리즘 스터디",
-//     tags: ["Java", "코딩테스트"],
-//     deadline: "2025.06.10",
-//     status: "모집중",
-//     current: 3,
-//     capacity: 5,
-//     writer: {
-//       nickname: "지영",
-//       profileImage: "/assets/profile-default.png",
-//     },
-//   },
-// ];
-
 const StudyGroupList = () => {
   const navigate = useNavigate();
 

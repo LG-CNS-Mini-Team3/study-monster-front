@@ -53,7 +53,7 @@ export const StatusBadge = styled.span`
   padding: 4px 12px;
   font-size: 12px;
   border-radius: 999px;
-  width: 40px;
+  width: 55px;
   text-align: center;
 `;
 export const JoinButton = styled.button`
