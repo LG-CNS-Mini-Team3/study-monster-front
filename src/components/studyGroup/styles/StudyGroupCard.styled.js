@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CardContainer = styled.div`
-  width: 80%;
+  width: 90%;
   max-width: 640px;
   border: 1px solid #e0e0e0;
   border-radius: 16px;
@@ -106,6 +106,7 @@ export const WriterSection = styled.div`
 export const ProfileImg = styled.img`
   width: 28px;
   height: 28px;
+  object-fit: cover;
   border-radius: 50%;
 `;
 

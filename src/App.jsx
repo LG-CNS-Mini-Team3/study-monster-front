@@ -9,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/study-group" element={<StudyGroupList />} />
         <Route path="/study-group/create" element={<CreateStudyGroup />} />
-        <Route path="/study-group/:id" element={<StudyGroupDetail />} />
+        <Route path="/study-group/detail" element={<StudyGroupDetail />} />
       </Routes>
     </BrowserRouter>
   );

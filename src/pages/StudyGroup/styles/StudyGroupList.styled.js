@@ -32,7 +32,7 @@ export const ContentWrapper = styled.div`
 export const CardList = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr); // 기본은 2개씩
-  gap: 24px;
+  gap: 50px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr; // 태블릿 이하에서는 1개씩
