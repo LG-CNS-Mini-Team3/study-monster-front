@@ -20,8 +20,8 @@ const CreateStudyGroup = () => {
   const [limit_members, setlimit_members] = useState("");
   const [deadline, setDeadline] = useState("");
   const [description, setDescription] = useState("");
-  // const [tags, setTags] = useState([]);
-  // const [inputTag, setInputTag] = useState("");
+  const [tags, setTags] = useState([]);
+  const [inputTag, setInputTag] = useState("");
 
   //  const handleAddTag = () => {
   //    todo : 태그 입력 추후 구현
