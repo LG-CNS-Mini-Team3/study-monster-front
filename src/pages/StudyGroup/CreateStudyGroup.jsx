@@ -28,6 +28,24 @@ const CreateStudyGroup = () => {
   //  }
 
   const handleSubmit = async () => {
+    if (!name || !description || !deadline || !limit_members) {
+      alert("모든 항목을 입력해 주세요.");
+      return;
+    }
+
+    const members = parseInt(limit_members);
+    if (isNaN(members) || members < 2) {
+      alert("모집 인원은 2명 이상이어야 합니다.");
+      return;
+    }
+
+    const now = new Date();
+    const selectedDate = new Date(deadline);
+    if (selectedDate <= now) {
+      alert("모집 마감일은 오늘 이후로 설정해야 합니다.");
+      return;
+    }
+
     const newStudyData = {
       name,
       description,
