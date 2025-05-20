@@ -68,7 +68,7 @@ const CreateStudyGroup = () => {
 
   return (
     <Wrapper>
-      <SectionTitle>1. 프로젝트 기본 정보를 입력해 주세요.</SectionTitle>
+      <SectionTitle>1. 스터디 그룹의 기본 정보를 입력해 주세요.</SectionTitle>
       <Divider />
       <InputRow>
         <label>모집 인원</label>
@@ -97,7 +97,7 @@ const CreateStudyGroup = () => {
         <small style={{ color: "gray" }}>todo : 해시태그 구현</small>
       </InputRow>
 
-      <SectionTitle>2. 프로젝트에 대해 소개해주세요.</SectionTitle>
+      <SectionTitle>2. 스터디 그룹에 대해 소개해주세요.</SectionTitle>
       <Divider />
       <InputRow>
         <label>스터디 제목</label>
