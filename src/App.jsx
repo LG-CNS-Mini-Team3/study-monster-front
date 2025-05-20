@@ -12,12 +12,7 @@ function App() {
         <Route path="/study-group" element={<StudyGroupList />} />
         <Route path="/study-group/create" element={<CreateStudyGroup />} />
         <Route path="/study-group/detail" element={<StudyGroupDetail />} />
-        <Route path={`/board/:boardId`} element={
-          <>
-            <BoardInfo />
-            <Comment />
-          </>
-        } />
+        <Route path={`/board/:boardId`} element={<BoardInfo />} />
       </Routes>
     </>
   );
