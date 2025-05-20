@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import getBoardInfo from "../../api/board/getBoardInfo.js";
 import BoardHeader from "../../components/board/BoardHeader.jsx";
-import BoardContent from "../../components/board/BoardContent.js";
-import BoardTag from "../../components/board/BoardTag.js";
+import BoardContent from "../../components/board/BoardContent.jsx";
+import BoardTag from "../../components/board/BoardTag.jsx";
 import usePageTitle from "../../utils/usePageTitle.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {

@@ -19,7 +19,7 @@ import TagBadge from "./TagBadge";
 
 const StudyGroupCard = ({
   name,
-  tags,
+  tagList = [],
   deadline,
   status,
   writer,
@@ -40,10 +40,11 @@ const StudyGroupCard = ({
       <CardTitle>{name}</CardTitle>
 
       <TagList>
-        {tags.map((tag, index) => (
-          <TagBadge key={index} tag={tag} />
+        {tagList.map((tag, index) => (
+          <TagBadge key={tag.id || index} tag={tag} />
         ))}
       </TagList>
+
       <ParticipantStatus>
         {current} / {limit_members}명 참여중
       </ParticipantStatus>
