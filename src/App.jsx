@@ -8,10 +8,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/study-group" element={<StudyGroupList />} />
+        <Route path="/study-groups" element={<StudyGroupList />} />
         <Route path="/study-group/create" element={<CreateStudyGroup />} />
-        <Route path="/study-group/detail" element={<StudyGroupDetail />} />
-        <Route path={`/board/:boardId`} element={<BoardInfo />} />
+        <Route path={`/study-groups/:studyId`} element={<StudyGroupDetail />} />
+        <Route path={`/boards/:boardId`} element={<BoardInfo />} />
       </Routes>
     </>
   );
