@@ -1,6 +1,17 @@
 import { useState, useEffect } from 'react';
 import TagInput from '../common/TagInput';
-import './styles/BoardForm.css';
+import {
+  FormContainer,
+  Form,
+  TitleInput,
+  FormGroup,
+  Label,
+  TextArea,
+  FormActions,
+  CancelButton,
+  SubmitButton,
+  ErrorMessage
+} from './styles/BoardForm.styled';
 
 const BoardForm = ({ 
   initialData, 
@@ -52,12 +63,12 @@ const BoardForm = ({
   };
 
   return (
-    <div className="board-form-container">
-      {error && <div className="error-message">{error}</div>}
+    <FormContainer>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
 
-      <form onSubmit={handleSubmit} className="board-form">
-        <div className="form-group">
-          <input
+      <Form onSubmit={handleSubmit}>
+        <FormGroup>
+          <TitleInput
             type="text"
             id="title"
             value={title}
@@ -66,11 +77,11 @@ const BoardForm = ({
             maxLength={100}
             required
           />
-        </div>
+        </FormGroup>
 
-        <div className="form-group">
-          <label htmlFor="content">내용</label>
-          <textarea
+        <FormGroup>
+          <Label htmlFor="content">내용</Label>
+          <TextArea
             id="content"
             value={content}
             onChange={handleContentChange}
@@ -78,7 +89,7 @@ const BoardForm = ({
             rows={20}
             required
           />
-        </div>
+        </FormGroup>
 
         <TagInput 
           tags={tags} 
@@ -86,24 +97,22 @@ const BoardForm = ({
           placeholder="태그를 입력하고 Enter를 누르세요" 
         />
 
-        <div className="form-actions">
-          <button
+        <FormActions>
+          <CancelButton
             type="button"
             onClick={cancelAction}
-            className="cancel-button"
           >
             취소
-          </button>
-          <button
+          </CancelButton>
+          <SubmitButton
             type="submit"
             disabled={isSubmitting}
-            className="submit-button"
           >
             {isSubmitting ? '처리 중...' : submitButtonText || '저장'}
-          </button>
-        </div>
-      </form>
-    </div>
+          </SubmitButton>
+        </FormActions>
+      </Form>
+    </FormContainer>
   );
 };
 

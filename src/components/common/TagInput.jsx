@@ -1,10 +1,18 @@
 import { useState } from 'react';
-import './styles/TagInput.css';
+import { 
+  TagFormGroup, 
+  Label, 
+  TagInputContainer, 
+  Input, 
+  TagsContainer, 
+  Tag, 
+  RemoveTagButton,
+  TagError
+} from './styles/TagInput.styled';
 
 const TagInput = ({ tags, setTags, placeholder }) => {
     const [currentTag, setCurrentTag] = useState('');
     const [tagError, setTagError] = useState('');
-
 
     const handleTagInputChange = (e) => {
         setCurrentTag(e.target.value);
@@ -49,7 +57,6 @@ const TagInput = ({ tags, setTags, placeholder }) => {
     };
 
     const handleTagInputKeyDown = (e) => {
-
         if (e.nativeEvent.isComposing) {
             return;
         }
@@ -64,10 +71,10 @@ const TagInput = ({ tags, setTags, placeholder }) => {
     };
 
     return (
-        <div className="form-group">
-            <label htmlFor="tags">태그</label>
-            <div className="tag-input-container">
-                <input
+        <TagFormGroup>
+            <Label htmlFor="tags">태그</Label>
+            <TagInputContainer>
+                <Input
                     type="text"
                     id="tags"
                     value={currentTag}
@@ -75,25 +82,24 @@ const TagInput = ({ tags, setTags, placeholder }) => {
                     onKeyDown={handleTagInputKeyDown}
                     placeholder={placeholder || "태그를 입력하고 Enter를 누르세요"}
                 />
-            </div>
+            </TagInputContainer>
 
-            {tagError && <div className="tag-error">{tagError}</div>}
+            {tagError && <TagError>{tagError}</TagError>}
 
-            <div className="tags-container">
+            <TagsContainer>
                 {tags.map((tag, index) => (
-                    <div key={index} className="tag">
+                    <Tag key={index}>
                         #{tag}
-                        <button
+                        <RemoveTagButton
                             type="button"
                             onClick={() => removeTag(index)}
-                            className="remove-tag-button"
                         >
                             &times;
-                        </button>
-                    </div>
+                        </RemoveTagButton>
+                    </Tag>
                 ))}
-            </div>
-        </div>
+            </TagsContainer>
+        </TagFormGroup>
     );
 };
 

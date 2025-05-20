@@ -1,35 +1,37 @@
-.form-group {
+import styled from 'styled-components';
+
+export const TagFormGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-}
+`;
 
-.form-group label {
+export const Label = styled.label`
   font-weight: bold;
   font-size: 16px;
-}
+`;
 
-.tag-input-container {
+export const TagInputContainer = styled.div`
   display: flex;
   gap: 10px;
-}
+`;
 
-.tag-input-container input {
+export const Input = styled.input`
   flex: 1;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
-}
+`;
 
-.tags-container {
+export const TagsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 10px;
-}
+`;
 
-.tag {
+export const Tag = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
@@ -38,9 +40,9 @@
   background-color: #f2f2f3;
   font-size: 14px;
   color: #20851f;
-}
+`;
 
-.remove-tag-button {
+export const RemoveTagButton = styled.button`
   background: none;
   border: none;
   color: #f44336;
@@ -50,9 +52,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
+`;
 
-.tag-error {
-    color: rgb(113, 113, 113);
-
-}
+export const TagError = styled.div`
+  color: rgb(113, 113, 113);
+`;

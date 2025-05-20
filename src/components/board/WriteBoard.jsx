@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BoardForm from './BoardForm';
 import createBoard from '../../api/board/createBoard';
-import './styles/WriteBoard.css';
+import { WriteSection } from './styles/WriteBoard.styled';
 
 const WriteBoard = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -14,6 +14,9 @@ const WriteBoard = () => {
   const navigate = useNavigate();
   
   const handleSubmit = async (formData) => {
+
+    console.log('BoardForm - 현재 태그 상태:', formData);
+
     try {
       setIsSubmitting(true);
       setError(null);
@@ -40,7 +43,7 @@ const WriteBoard = () => {
   };
   
   return (
-    <div className="write-section">
+    <WriteSection>
       <BoardForm
         onSubmit={handleSubmit}
         isSubmitting={isSubmitting}
@@ -48,7 +51,7 @@ const WriteBoard = () => {
         submitButtonText="저장"
         cancelAction={handleCancel}
       />
-    </div>
+    </WriteSection>
   );
 };
 
