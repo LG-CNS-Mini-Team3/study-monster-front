@@ -42,7 +42,7 @@ const CreateStudyGroup = () => {
     const now = new Date();
     const selectedDate = new Date(deadline);
     if (selectedDate <= now) {
-      alert("모집 마감일은 오늘 이후로 설정해야 합니다.");
+      alert("모집 마감일은 현재 시간 이후로 설정해야 합니다.");
       return;
     }
 
