@@ -1,18 +1,26 @@
+import { Routes, Route } from "react-router-dom";
+import StudyGroupList from "./pages/studyGroup/StudyGroupList";
+import CreateStudyGroup from "./pages/studyGroup/CreateStudyGroup";
+import StudyGroupDetail from "./pages/studyGroup/StudyGroupDetail";
+import BoardInfo from "./pages/board/BoardInfo.jsx";
 import Comment from './components/Caption/Comment';
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Route, Routes } from 'react-router-dom';
 
 function App() {
-
   return (
     <>
-    <Routes>
-      <Route path="board/:boardId" element={<Comment/>} />
-    </Routes>
+      <Routes>
+        <Route path="/study-group" element={<StudyGroupList />} />
+        <Route path="/study-group/create" element={<CreateStudyGroup />} />
+        <Route path="/study-group/detail" element={<StudyGroupDetail />} />
+        <Route path={`/board/:boardId`} element={
+          <>
+            <BoardInfo />
+            <Comment />
+          </>
+        } />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
