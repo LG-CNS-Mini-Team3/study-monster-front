@@ -39,7 +39,7 @@ const StudyGroupList = () => {
             <StudyGroupCard
               key={group.id}
               name={group.name}
-              tags={group.tags}
+              tags={group.tagList}
               status={group.status}
               current={group.current}
               limit_members={group.limit_members}
