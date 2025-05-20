@@ -24,7 +24,6 @@ const Comment = () => {
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           placeholder={"댓글을 작성해 주세요."}
-          className="w-full h-20 p-2 border rounded resize-none focus:outline-none focus:ring"
         />
         <div>
           <CommentBoxButton
