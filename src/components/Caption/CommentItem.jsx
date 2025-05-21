@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteComment, updateComment } from "../../api/comment_api";
+import { deleteComment, updateComment } from "../../api/comment/comment_api";
 import {
   CommentBoxItemWrapper,
   CommentBoxItemName,

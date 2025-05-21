@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const CommentBox = styled.div`
   width: 720px;
+  margin: 10px auto;
 `
 
 export const CommentBoxWrapper = styled.form`
