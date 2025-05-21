@@ -3,8 +3,10 @@ import StudyGroupList from "./pages/studyGroup/StudyGroupList";
 import CreateStudyGroup from "./pages/studyGroup/CreateStudyGroup";
 import StudyGroupDetail from "./pages/studyGroup/StudyGroupDetail";
 import BoardInfo from "./pages/board/BoardInfo.jsx";
+import WriteBoard from "./components/board/WriteBoard.jsx";
 
 function App() {
+
   return (
     <>
       <Routes>
@@ -12,9 +14,11 @@ function App() {
         <Route path="/study-group/create" element={<CreateStudyGroup />} />
         <Route path="/study-group/detail" element={<StudyGroupDetail />} />
         <Route path={`/board/:boardId`} element={<BoardInfo />} />
+        <Route path="/board/create" element={<WriteBoard />}/>
       </Routes>
     </>
   );
+
 }
 
 export default App;
