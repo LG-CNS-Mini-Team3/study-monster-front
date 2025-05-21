@@ -1,7 +1,7 @@
 const API_BASE_URL = "http://localhost:8080";
 
 const postCreateStudyGroup = async (studyData) => {
-  const url = `${API_BASE_URL}/study-group/create?userId=1`; //테스트용 url
+  const url = `${API_BASE_URL}/study-groups/new?userId=1`; //테스트용 url
 
   try {
     const res = await fetch(url, {
