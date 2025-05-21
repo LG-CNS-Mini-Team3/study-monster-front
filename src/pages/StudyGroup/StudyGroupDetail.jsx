@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import getStudyDetail from "../../api/studyGroup/getStudyDetail";
+import joinStudy from "../../api/studyGroup/joinStudy";
 import usePageTitle from "../../utils/usePageTitle";
 import StudyTag from "../../components/studyGroup/StudyTag";
 import StudyGroupHeader from "../../components/studyGroup/StudyGroupHeader";
@@ -68,9 +69,7 @@ const StudyGroupDetail = () => {
         ))}
       </TagList>
 
-      <ApplyButton onClick={() => alert("신청 기능 준비 중입니다!")}>
-        신청하기
-      </ApplyButton>
+      <ApplyButton onClick={joinStudy(studyId)}>신청하기</ApplyButton>
     </Wrapper>
   );
 };

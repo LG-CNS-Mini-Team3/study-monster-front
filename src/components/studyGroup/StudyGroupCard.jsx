@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import joinStudy from "../../api/studyGroup/joinStudy";
 import {
   CardContainer,
   MetaInfo,
@@ -66,8 +67,7 @@ const StudyGroupCard = ({
             e.stopPropagation(); // 카드 클릭 이벤트 막기
             const confirmed = window.confirm("신청하시겠습니까?");
             if (confirmed) {
-              alert("신청되었습니다.");
-              // TODO: 신청 처리 로직 추가
+              joinStudy();
             }
           }}
         >
