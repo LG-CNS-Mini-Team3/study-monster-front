@@ -5,7 +5,7 @@ import BoardHeader from "../../components/board/BoardHeader.jsx";
 import BoardContent from "../../components/board/BoardContent.jsx";
 import BoardTag from "../../components/board/BoardTag.jsx";
 import usePageTitle from "../../utils/usePageTitle.js";
-import BoardFeedbackModal from "../../comopnents/board/BoardFeedbackModal.jsx";
+import BoardFeedbackModal from "../../components/board/BoardFeedbackModal.jsx";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
   getBoardInfo(boardId).then((response) => {
