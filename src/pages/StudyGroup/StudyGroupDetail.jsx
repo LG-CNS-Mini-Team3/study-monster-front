@@ -69,7 +69,7 @@ const StudyGroupDetail = () => {
         ))}
       </TagList>
 
-      <ApplyButton onClick={joinStudy(studyId)}>신청하기</ApplyButton>
+      <ApplyButton onClick={() => joinStudy(studyId)}>신청하기</ApplyButton>
     </Wrapper>
   );
 };

@@ -67,7 +67,7 @@ const StudyGroupCard = ({
             e.stopPropagation(); // 카드 클릭 이벤트 막기
             const confirmed = window.confirm("신청하시겠습니까?");
             if (confirmed) {
-              joinStudy();
+              joinStudy(studyId);
             }
           }}
         >
