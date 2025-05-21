@@ -5,6 +5,7 @@ import BoardHeader from "../../components/board/BoardHeader.jsx";
 import BoardContent from "../../components/board/BoardContent.jsx";
 import BoardTag from "../../components/board/BoardTag.jsx";
 import usePageTitle from "../../utils/usePageTitle.js";
+import BoardFeedbackModal from "../../comopnents/board/BoardFeedbackModal.jsx";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
   getBoardInfo(boardId).then((response) => {
@@ -38,41 +39,42 @@ const initTagListData = [
   { tagName: "컴포넌트", tagId: 3 },
 ];
 
-const writerImgSrc =
-  "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png"; // TODO 프로필 이미지 기능 추가
+const writerImgSrc = "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png"; // TODO 프로필 이미지 기능 추가
 
 const BoardInfo = () => {
-  const { boardId } = useParams();
-  const [boardInfo, setBoardInfo] = useState(initBoardData);
-  const [commentList, setCommentList] = useState(initCommentListData);
-  const [tagList, setTagList] = useState(initTagListData);
-  const commentComponentRef = useRef();
-  usePageTitle(`${boardInfo.title}`);
+    const {boardId} = useParams();
+    const [boardInfo, setBoardInfo] = useState(initBoardData);
+    const [commentList, setCommentList] = useState(initCommentListData);
+    const [tagList, setTagList] = useState(initTagListData);
+    const [isModalOpen, setModalOpen] = useState(false);
+    const commentComponentRef = useRef();
+    usePageTitle(`${boardInfo.title}`);
 
-  useEffect(() => {
-    callBoardInfoApi(boardId, setBoardInfo);
-    callBoardCommentApi(boardId, setCommentList);
-    callBoardTagApi(boardId, setTagList);
-  }, [boardId]);
+    useEffect(() => {
+        callBoardInfoApi(boardId, setBoardInfo);
+        callBoardCommentApi(boardId, setCommentList);
+        callBoardTagApi(boardId, setTagList);
+    }, [boardId]);
 
-  return (
-    <>
-      <BoardHeader
-        boardId={boardInfo.boardId}
-        title={boardInfo.title}
-        created_at={boardInfo.created_at}
-        updated_at={boardInfo.updated_at}
-        userId={boardInfo.userId}
-        nickname={boardInfo.nickname}
-        commentCount={commentList.length}
-        writerImgSrc={writerImgSrc}
-        commentComponentRef={commentComponentRef}
-      />
-      <BoardContent content={boardInfo.content} />
-      <BoardTag tagList={tagList} />
-      <div ref={commentComponentRef} />
-    </>
-  );
+    return (
+        <>
+            <BoardHeader
+                boardId={boardInfo.boardId}
+                title={boardInfo.title}
+                created_at={boardInfo.created_at}
+                updated_at={boardInfo.updated_at}
+                userId={boardInfo.userId}
+                nickname={boardInfo.nickname}
+                commentCount={commentList.length}
+                writerImgSrc={writerImgSrc}
+                commentComponentRef={commentComponentRef}
+            />
+            <BoardContent content={boardInfo.content}/>
+            <BoardTag tagList={tagList}/>
+            <div ref={commentComponentRef}/>
+            <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId}/>
+        </>
+    );
 };
 
 export default BoardInfo;
