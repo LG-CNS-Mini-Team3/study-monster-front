@@ -39,11 +39,11 @@ const StudyGroupHeader = ({
           </Writer>
           |
           <Text>
-            {formatDateTime(created_at)}({getDday(deadline)}) {deadline}
+            마감일 : {deadline} ({getDday(deadline)})
           </Text>
-          |
+          |{/* |<Text>{formatDateTime(created_at)}</Text>| 글 생성일*/}
           <Text>
-            인원: {current} / {limit_members}
+            인원 : {current} / {limit_members}
           </Text>
           | <StatusBadge $status={status}>{status}</StatusBadge>
         </SubInfo>
