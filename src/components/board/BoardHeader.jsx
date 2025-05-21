@@ -8,7 +8,7 @@ const BoardHeader = ({boardId, title, created_at, updated_at, userId, nickname, 
         nav(`/user/${userId}`);
     }
     const onClickCommentCountDiv = () => {
-        commentComponentRef.current?.scrollIntoView({behavior: "smooth", block: "end"});
+        commentComponentRef.current?.scrollIntoView({behavior: "smooth", block: "start"});
     }
     return (
         <BoardHeaderDiv>
