@@ -12,7 +12,7 @@ import {
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { CommentBoxButton, CommentBoxTextArea } from "./styles/Comment.styled";
 
-const CommentItem = ({ item }) => {
+const CommentItem = ({ userId, item }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState();
 
@@ -34,7 +34,7 @@ const CommentItem = ({ item }) => {
             const li = e.currentTarget.closest("li")
             const body = {
                 id: li.id,
-                user_id: 1
+                user_id: userId
             }
             deleteComment(JSON.stringify(body));
           }}
@@ -55,7 +55,7 @@ const CommentItem = ({ item }) => {
             onClick={() => {
               const body = {
                 id: item.id,
-                user_id: 1,
+                user_id: userId,
                 content: editedContent,
               };
               updateComment(JSON.stringify(body));

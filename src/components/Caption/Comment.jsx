@@ -4,7 +4,7 @@ import { createComment, listComment } from "../../api/comment_api";
 import { CommentBox, CommentBoxButton, CommentBoxItem, CommentBoxTextArea, CommentBoxWrapper } from "./styles/Comment.styled";
 import { useParams } from "react-router-dom";
 
-const Comment = () => {
+const Comment = ({userId, boardId}) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const params = useParams();
@@ -32,8 +32,8 @@ const Comment = () => {
             onClick={(e) => {
               e.preventDefault();
               const body = {
-                user_id: 1,
-                board_id: 1,
+                user_id: userId,
+                board_id: boardId,
                 content: comment,
               };
               createComment(JSON.stringify(body));
@@ -48,6 +48,7 @@ const Comment = () => {
           <CommentItem
             key={c.id}
             item = {c}
+            userId = {userId}
           />
         ))}
       </CommentBoxItem>

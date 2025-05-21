@@ -47,7 +47,7 @@ const BoardInfo = () => {
     const [commentList, setCommentList] = useState(initCommentListData);
     const [tagList, setTagList] = useState(initTagListData);
     const [isModalOpen, setModalOpen] = useState(false);
-    const commentComponentRef = useRef();
+    //const commentComponentRef = useRef();
     usePageTitle(`${boardInfo.title}`);
 
     useEffect(() => {
@@ -71,7 +71,8 @@ const BoardInfo = () => {
             />
             <BoardContent content={boardInfo.content}/>
             <BoardTag tagList={tagList}/>
-            <div ref={commentComponentRef}/>
+            {/* <div ref={commentComponentRef}/> */}
+            <Comment userId = {1} boardId={boardId}/>
             <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId}/>
         </>
     );
