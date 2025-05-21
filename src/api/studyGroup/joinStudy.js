@@ -15,6 +15,7 @@ const joinStudy = async (studyId, userId = 1) => {
     }
 
     alert(msg || "신청이 완료되었습니다!");
+    window.location.reload();
   } catch (err) {
     console.error("스터디 신청 오류:", err);
     alert("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요. ");

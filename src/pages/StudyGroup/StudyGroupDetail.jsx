@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import getStudyDetail from "../../api/studyGroup/getStudyDetail";
 import joinStudy from "../../api/studyGroup/joinStudy";
@@ -62,13 +62,11 @@ const StudyGroupDetail = () => {
       />
       <DescriptionTitle>스터디를 소개합니다.</DescriptionTitle>
       <Description>{study.description}</Description>
-
       <TagList>
         {study.tagList.map((tag, i) => (
           <StudyTag key={i} tag={tag}></StudyTag>
         ))}
       </TagList>
-
       <ApplyButton
         disabled={study.status === "모집완료"}
         onClick={() => {
