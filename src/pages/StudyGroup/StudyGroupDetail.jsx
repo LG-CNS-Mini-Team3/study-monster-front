@@ -69,7 +69,18 @@ const StudyGroupDetail = () => {
         ))}
       </TagList>
 
-      <ApplyButton onClick={() => joinStudy(studyId)}>신청하기</ApplyButton>
+      <ApplyButton
+        disabled={study.status === "모집완료"}
+        onClick={() => {
+          if (study.status === "모집완료") return;
+          const confirmed = window.confirm("신청하시겠습니까?");
+          if (confirmed) {
+            joinStudy(studyId);
+          }
+        }}
+      >
+        {study.status === "모집완료" ? "마감" : "신청"}{" "}
+      </ApplyButton>
     </Wrapper>
   );
 };

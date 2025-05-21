@@ -63,15 +63,17 @@ const StudyGroupCard = ({
           <Nickname>{writer.nickname}</Nickname>
         </WriterSection>
         <JoinButton
+          disabled={status === "모집완료"}
           onClick={(e) => {
             e.stopPropagation(); // 카드 클릭 이벤트 막기
+            if (status === "모집완료") return;
             const confirmed = window.confirm("신청하시겠습니까?");
             if (confirmed) {
               joinStudy(studyId);
             }
           }}
         >
-          신청
+          {status === "모집완료" ? "마감" : "신청"}
         </JoinButton>
       </Footer>
     </CardContainer>
