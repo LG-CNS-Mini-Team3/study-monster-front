@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import StudyGroupCard from "../../components/studyGroup/StudyGroupCard";
 import getStudyGroupList from "../../api/studyGroup/getStudyList";
+import BellNotification from "../../components/common/BellNotification";
+
 import {
   PageWrapper,
   MainContainer,
@@ -9,6 +11,7 @@ import {
   PageTitle,
   CreateButton,
   CardList,
+  ButtonWithBell,
 } from "./styles/StudyGroupList.styled";
 
 const StudyGroupList = () => {
@@ -32,9 +35,12 @@ const StudyGroupList = () => {
       <MainContainer>
         <HeaderSection>
           <PageTitle>스터디 그룹 모집</PageTitle>
-          <CreateButton onClick={() => navigate("/study-groups/new")}>
-            스터디 만들기
-          </CreateButton>
+          <ButtonWithBell>
+            <BellNotification />
+            <CreateButton onClick={() => navigate("/study-groups/new")}>
+              스터디 만들기
+            </CreateButton>
+          </ButtonWithBell>
         </HeaderSection>
 
         <CardList>

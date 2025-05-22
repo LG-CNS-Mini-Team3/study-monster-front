@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "axios": "^1.9.0",
+    "lucide-react": "^0.511.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-loading-indicator": "^1.0.2",
     "react-loading-indicators": "^1.0.1",
     "react-router-dom": "^7.6.0",
     "styled-components": "^6.1.18"

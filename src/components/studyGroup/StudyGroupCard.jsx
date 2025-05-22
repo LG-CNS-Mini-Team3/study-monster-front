@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import joinStudy from "../../api/studyGroup/joinStudy";
 import {
   CardContainer,
   MetaInfo,
@@ -44,9 +45,10 @@ const StudyGroupCard = ({
       <CardTitle>{name}</CardTitle>
 
       <TagList>
-        {tags.map((tag, index) => (
+        {tags.slice(0, 3).map((tag, index) => (
           <StudyTag key={tag.id || index} tag={tag} />
         ))}
+        {tags.length > 3 && <span>+{tags.length - 3}개</span>}
       </TagList>
 
       <ParticipantStatus>
@@ -62,16 +64,17 @@ const StudyGroupCard = ({
           <Nickname>{writer.nickname}</Nickname>
         </WriterSection>
         <JoinButton
+          disabled={status === "모집완료"}
           onClick={(e) => {
             e.stopPropagation(); // 카드 클릭 이벤트 막기
+            if (status === "모집완료") return;
             const confirmed = window.confirm("신청하시겠습니까?");
             if (confirmed) {
-              alert("신청되었습니다.");
-              // TODO: 신청 처리 로직 추가
+              joinStudy(studyId, 1, navigate);
             }
           }}
         >
-          신청
+          {status === "모집완료" ? "마감" : "신청"}
         </JoinButton>
       </Footer>
     </CardContainer>

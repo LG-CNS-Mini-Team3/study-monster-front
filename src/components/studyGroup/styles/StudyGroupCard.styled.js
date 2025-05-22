@@ -69,6 +69,15 @@ export const JoinButton = styled.button`
   &:hover {
     background-color: rgb(9, 171, 41);
   }
+  background-color: ${(props) => (props.disabled ? "#ccc" : "#4caf50")};
+
+  &:hover {
+    background-color: ${(props) => (props.disabled ? "#ccc" : "#45a049")};
+  }
+
+  &:disabled {
+    cursor: default;
+  }
 `;
 export const CardTitle = styled.h3`
   font-size: 16px;

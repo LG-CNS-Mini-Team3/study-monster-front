@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import getStudyDetail from "../../api/studyGroup/getStudyDetail";
+import joinStudy from "../../api/studyGroup/joinStudy";
 import usePageTitle from "../../utils/usePageTitle";
 import StudyTag from "../../components/studyGroup/StudyTag";
 import StudyGroupHeader from "../../components/studyGroup/StudyGroupHeader";
@@ -61,15 +62,22 @@ const StudyGroupDetail = () => {
       />
       <DescriptionTitle>스터디를 소개합니다.</DescriptionTitle>
       <Description>{study.description}</Description>
-
       <TagList>
         {study.tagList.map((tag, i) => (
           <StudyTag key={i} tag={tag}></StudyTag>
         ))}
       </TagList>
-
-      <ApplyButton onClick={() => alert("신청 기능 준비 중입니다!")}>
-        신청하기
+      <ApplyButton
+        disabled={study.status === "모집완료"}
+        onClick={() => {
+          if (study.status === "모집완료") return;
+          const confirmed = window.confirm("신청하시겠습니까?");
+          if (confirmed) {
+            joinStudy(studyId);
+          }
+        }}
+      >
+        {study.status === "모집완료" ? "마감" : "신청"}{" "}
       </ApplyButton>
     </Wrapper>
   );
