@@ -17,7 +17,7 @@ function App() {
         <Container style={{ minHeight: "75vh" }}>studyMonster</Container>
       </Header>
       <Routes>
-        <Route path="/aut/MyPage" element={<MyPage/>} />
+        <Route path="/auth/MyPage" element={<MyPage/>} />
         <Route path="/" element={<Home/>} />
       </Routes>
     </>
