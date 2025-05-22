@@ -58,3 +58,18 @@ export const removeBookmark = async (body) => {
     return false;
   }
 };
+
+export const getBookmark = async (userId) => {
+  try {
+    const res = await fetch(`${API_BASE_URL}/list/${userId}`, {
+      method: "GET"
+    });
+
+    if (!res.ok) throw new Error("북마크 불러오기 실패");
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("북마크 불러오기 에러:", err);
+    return false;
+  }
+}

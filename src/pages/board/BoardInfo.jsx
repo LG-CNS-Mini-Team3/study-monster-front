@@ -9,6 +9,8 @@ import BoardFeedbackModal from "../../components/board/BoardFeedbackModal.jsx";
 import BookmarkButton from "../../components/bookmark/BookmarkButton.jsx";
 import Like from "../../components/Like/Like.jsx";
 import Comment from "../../components/Caption/Comment.jsx";
+import BookmarkList from "../../components/bookmark/BookmarkList.jsx";
+import { listComment } from "../../api/comment/comment_api.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -16,8 +18,10 @@ const callBoardInfoApi = (boardId, setBoardInfo) => {
     });
 };
 
-const callBoardCommentApi = (boardId, setCommentList) => {
+const callBoardCommentApi = async (boardId, setCommentList) => {
     console.log(`board ${boardId}의 comment API 연결 요망`); // TODO board 의 comment API 연결 요망
+    const comments = await listComment(boardId)
+    setCommentList(comments)
 };
 
 const callBoardTagApi = (boardId, setTagList) => {
@@ -100,7 +104,7 @@ const BoardInfo = () => {
             <BoardContent content={boardInfo.content}/>
             <BoardTag tagList={tagList}/>
             <div ref={commentComponentRef}/>
-            <BookmarkButton userId = {1} boardId = {boardId}/>
+            <BookmarkList userId = {1} />
             <Like userId = {1} boardId = {boardId}/>
             <Comment userId = {1} boardId={boardId}/>
             <div ref={commentComponentRef}/>

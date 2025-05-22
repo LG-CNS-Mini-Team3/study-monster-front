@@ -24,7 +24,7 @@ export const createComment = async (body) => {
 
 export const listComment = async (num) => {
   try {
-    const res = await fetch(API_BASE_URL + "/list?boardId=" + num, {
+    const res = await fetch(API_BASE_URL + "/list/"+ num, {
       method: "get"
     });
     if (res.ok) {

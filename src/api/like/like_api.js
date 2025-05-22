@@ -21,8 +21,23 @@ export const addLike = async (body) => {
     } else {
       const err = await res.json();
       const message = err.message;
-      alert(`추천에 문제가 생겼습니다\n${message}`);
+      alert(`추천에 문제가 생겼습니다.\n${message}`);
     }
+  } catch (error) {
+    console.error("생성에라: ", error);
+    alert("추천에 문제가 생겼습니다");
+  }
+};
+
+export const isUserLiked = async (body) => {
+  try{
+    const res = await fetch(API_BASE_URL + "/check", {
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body,
+    });
   } catch (error) {
     console.error("생성에라: ", error);
     alert("추천에 문제가 생겼습니다");
@@ -31,7 +46,7 @@ export const addLike = async (body) => {
 
 export const getLikeCount = async (boardId) => {
   try {
-    const res = await fetch(API_BASE_URL + "/get?boardId=" + boardId, {
+    const res = await fetch(API_BASE_URL + "/get/"+ boardId, {
       method: "get",
     });
     if (res.ok) {
@@ -40,7 +55,7 @@ export const getLikeCount = async (boardId) => {
     } else {
       const err = await res.json();
       const message = err.message;
-      alert(`추천수를 가져오는데 문제가 생겼습니다\n${message}`);
+      alert(`추천에 문제가 생겼습니다.\n${message}`);
     }
   } catch (error) {
     console.error("보여주기에라: ", error);
