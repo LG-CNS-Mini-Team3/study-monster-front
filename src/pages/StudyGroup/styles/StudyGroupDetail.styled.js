@@ -47,14 +47,6 @@ export const TagList = styled.div`
   margin-top: 1rem;
 `;
 
-// export const Tag = styled.span`
-//   background-color: #e9f2ff;
-//   color: #007bff;
-//   font-size: 14px;
-//   padding: 6px 12px;
-//   border-radius: 999px;
-// `;
-
 export const DescriptionTitle = styled.h2`
   font-size: 20px;
   font-weight: bold;
@@ -76,5 +68,14 @@ export const ApplyButton = styled.button`
 
   &:hover {
     background-color: #388e3c;
+  }
+  background-color: ${(props) => (props.disabled ? "#ccc" : "#4caf50")};
+
+  &:hover {
+    background-color: ${(props) => (props.disabled ? "#ccc" : "#45a049")};
+  }
+
+  &:disabled {
+    cursor: default;
   }
 `;
