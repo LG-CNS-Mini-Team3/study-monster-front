@@ -18,7 +18,7 @@ const BookmarkButton = ({ boardId, userId }) => {
       if (!userId) return;
 
       const res = await checkBookmark(body);
-      setIsBookmarked(res)
+      setIsBookmarked(res);
     }
     temp()
     

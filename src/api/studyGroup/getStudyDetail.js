@@ -1,5 +1,5 @@
-async function getStudyGroupList() {
-  return fetch("http://localhost:8080/study-groups") // 포트 확인!
+async function getStudyDetail(studyId) {
+  return fetch(`http://localhost:8080/study-groups/${studyId}`) // 포트 확인!
     .then((response) => {
       if (!response.ok) {
         console.log("백엔드 통신 에러");
@@ -9,4 +9,4 @@ async function getStudyGroupList() {
     });
 }
 
-export default getStudyGroupList;
+export default getStudyDetail;
