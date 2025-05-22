@@ -29,7 +29,7 @@ const WriteBoard = () => {
       const response = await createBoard(boardData);
       
       console.log('게시글 작성 성공:', response);
-      navigate(`/board/${response.id}`); // 게시글 상세 페이지로 이동
+      navigate(`/boards/${response.id}`); // 게시글 상세 페이지로 이동
     } catch (err) {
       console.error('게시글 작성 실패:', err);
       setError('게시글 작성 중 오류가 발생했습니다. 다시 시도해주세요.');
