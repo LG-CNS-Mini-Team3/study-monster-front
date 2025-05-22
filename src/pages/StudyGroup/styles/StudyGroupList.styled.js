@@ -13,6 +13,12 @@ export const HeaderSection = styled.div`
   align-items: center;
 `;
 
+export const ButtonWithBell = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 16px;
+`;
+
 export const MainContainer = styled.div`
   width: 100%;
   max-width: 1024px;
