@@ -94,7 +94,7 @@ const BoardForm = ({
         <TagInput 
           tags={tags} 
           setTags={setTags}
-          placeholder="태그를 입력하고 Enter를 누르세요" 
+          placeholder="해시태그를 입력하고 Enter를 누르세요" 
         />
 
         <FormActions>
