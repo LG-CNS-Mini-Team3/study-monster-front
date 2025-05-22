@@ -9,6 +9,8 @@ import { Container } from "lucide-react";
 import Header from "./components/header/Header.jsx";
 import MyPage from "./components/auth/MyPage.jsx";
 import Home from "./components/HomPage.jsx";
+import EditBoard from "./components/board/EditBoard.jsx";
+import WriteBoard from "./components/board/WriteBoard.jsx";
 
 function App() {
   return (
@@ -16,12 +18,20 @@ function App() {
       <Header>
         <Container style={{ minHeight: "75vh" }}>studyMonster</Container>
       </Header>
+      <div style={{ paddingTop: "50px" }}></div>
       <Routes>
         <Route path="/auth/MyPage" element={<MyPage/>} />
         <Route path="/" element={<Home/>} />
+        <Route path="/study-groups" element={<StudyGroupList />} />
+        <Route path="/study-groups/new" element={<CreateStudyGroup />} />
+        <Route path={`/study-groups/:boardId`} element={<StudyGroupDetail />} />
+        <Route path="/boards/new" element={<WriteBoard />} />
+        <Route path={`/boards/:boardId`} element={<BoardInfo />} />
+        <Route path={`/boards/:boardId/edit`} element={<EditBoard />} />
       </Routes>
     </>
   );
 }
 
 export default App;
+
