@@ -8,7 +8,6 @@ export const fetchUser = async () => {
     const data = await fetchWithAuth("/user", {
       method: "GET",
     });
-    console.log(data);
     return data;
   } catch (error) {
     console.error("사용자 정보 가져오기 실패");
@@ -38,6 +37,7 @@ export const deleteUser = async () => {
       method: "DELETE",
     });
     console.log("회원 탈퇴 완료");
+    return true;
   } catch (error) {
     console.error("회원 탈퇴 실패:", error.data || error.message);
     throw error;
