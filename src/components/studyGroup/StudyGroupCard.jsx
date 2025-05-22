@@ -15,11 +15,12 @@ import {
   JoinButton,
   WriterSection,
 } from "./styles/StudyGroupCard.styled";
-import TagBadge from "./TagBadge";
+import StudyTag from "./StudyTag";
 
 const StudyGroupCard = ({
+  studyId,
   name,
-  tags,
+  tags = [],
   deadline,
   status,
   writer,
@@ -28,8 +29,11 @@ const StudyGroupCard = ({
 }) => {
   const navigate = useNavigate();
 
+  const writerImgSrc =
+    "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png";
+
   return (
-    <CardContainer onClick={() => navigate(`/study-group/detail`)}>
+    <CardContainer onClick={() => navigate(`/study-groups/${studyId}`)}>
       <HeaderRow>
         <MetaInfo>마감일 | {deadline}</MetaInfo>
         <StatusBadge $status={status}>{status}</StatusBadge>
@@ -41,9 +45,10 @@ const StudyGroupCard = ({
 
       <TagList>
         {tags.map((tag, index) => (
-          <TagBadge key={index} tag={tag} />
+          <StudyTag key={tag.id || index} tag={tag} />
         ))}
       </TagList>
+
       <ParticipantStatus>
         {current} / {limit_members}명 참여중
       </ParticipantStatus>
@@ -52,7 +57,7 @@ const StudyGroupCard = ({
 
       <Footer>
         <WriterSection>
-          <ProfileImg src={`images/${writer.profileImage}`} alt="작성자" />
+          <ProfileImg src={writerImgSrc} alt="작성자" />
           {/* 프로필사진 추후 수정 */}
           <Nickname>{writer.nickname}</Nickname>
         </WriterSection>

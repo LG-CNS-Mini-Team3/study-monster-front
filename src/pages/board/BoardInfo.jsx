@@ -5,7 +5,10 @@ import BoardHeader from "../../components/board/BoardHeader.jsx";
 import BoardContent from "../../components/board/BoardContent.jsx";
 import BoardTag from "../../components/board/BoardTag.jsx";
 import usePageTitle from "../../utils/usePageTitle.js";
-import BoardFeedbackModal from "../../comopnents/board/BoardFeedbackModal.jsx";
+import BoardFeedbackModal from "../../components/board/BoardFeedbackModal.jsx";
+import BookmarkButton from "../../components/bookmark/BookmarkButton.jsx";
+import Like from "../../components/Like/Like.jsx";
+import Comment from "../../components/Caption/Comment.jsx";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
   getBoardInfo(boardId).then((response) => {
@@ -47,7 +50,7 @@ const BoardInfo = () => {
     const [commentList, setCommentList] = useState(initCommentListData);
     const [tagList, setTagList] = useState(initTagListData);
     const [isModalOpen, setModalOpen] = useState(false);
-    //const commentComponentRef = useRef();
+    const commentComponentRef = useRef();
     usePageTitle(`${boardInfo.title}`);
 
     useEffect(() => {
@@ -71,8 +74,11 @@ const BoardInfo = () => {
             />
             <BoardContent content={boardInfo.content}/>
             <BoardTag tagList={tagList}/>
-            {/* <div ref={commentComponentRef}/> */}
+            <div ref={commentComponentRef}/>
+            <BookmarkButton userId = {1} boardId = {boardId}/>
+            <Like userId = {1} boardId = {boardId}/>
             <Comment userId = {1} boardId={boardId}/>
+            <div ref={commentComponentRef}/>
             <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId}/>
         </>
     );
