@@ -17,6 +17,16 @@ const BellNotification = () => {
 
   const toggleModal = () => setShowModal((prev) => !prev);
 
+  const handleAccept = (id) => {
+    alert("초대 수락 완료!");
+    setInvites((prev) => prev.filter((invite) => invite.id == id));
+  };
+
+  const handleDecline = (id) => {
+    alert("초대 거절 완료!");
+    setInvites((prev) => prev.filter((invite) => invite.id !== id));
+  };
+
   return (
     <BellContainer onClick={toggleModal}>
       <Bell />
@@ -28,11 +38,15 @@ const BellNotification = () => {
             <p>새로운 초대가 없습니다.</p>
           ) : (
             invites.map((invite) => (
-              <div key={invite.id}>
+              <div key={invite.id} style={{ marginBottom: "12px" }}>
                 <p>
                   <strong>{invite.from}</strong> 님이{" "}
                   <strong>{invite.group}</strong>에 초대했어요!
                 </p>
+                <div style={{ display: "flex", gap: "8px" }}>
+                  <button onClick={() => handleAccept(invite.id)}>수락</button>
+                  <button onClick={() => handleDecline(invite.id)}>거절</button>
+                </div>
               </div>
             ))
           )}
