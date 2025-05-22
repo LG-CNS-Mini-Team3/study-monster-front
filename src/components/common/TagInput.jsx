@@ -10,7 +10,7 @@ import {
   TagError
 } from './styles/TagInput.styled';
 
-const TagInput = ({ tags, setTags, placeholder }) => {
+const TagInput = ({ tags, setTags, placeholder, label = '해시태그', labelBold = true, }) => {
     const [currentTag, setCurrentTag] = useState('');
     const [tagError, setTagError] = useState('');
 
@@ -72,7 +72,7 @@ const TagInput = ({ tags, setTags, placeholder }) => {
 
     return (
         <TagFormGroup>
-            <Label htmlFor="tags">태그</Label>
+            <Label htmlFor="tags" $bold={labelBold}>{label}</Label>
             <TagInputContainer>
                 <Input
                     type="text"

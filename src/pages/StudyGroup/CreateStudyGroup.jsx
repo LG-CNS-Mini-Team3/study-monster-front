@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import postCreateStudyGroup from "../../api/studyGroup/postCreateStudyGroup";
+import TagInput from "../../components/common/TagInput";
 import {
   Wrapper,
   SectionTitle,
@@ -23,9 +24,6 @@ const CreateStudyGroup = () => {
   const [tags, setTags] = useState([]);
   const [inputTag, setInputTag] = useState("");
 
-  //  const handleAddTag = () => {
-  //    todo : 태그 입력 추후 구현
-  //  }
 
   const handleSubmit = async () => {
     if (!name || !description || !deadline || !limit_members) {
@@ -52,14 +50,14 @@ const CreateStudyGroup = () => {
       limit_members,
       deadline,
       Nickname: "테스트",
-      // tags,
+      tags
     };
 
     const { ok, data } = await postCreateStudyGroup(newStudyData);
 
     if (ok) {
       alert("스터디가 성공적으로 등록되었습니다!");
-      navigate("/study-group");
+      navigate("/study-groups");
     } else {
       alert("스터디 등록에 실패했습니다.");
       console.error("응답 데이터:", data);
@@ -87,15 +85,13 @@ const CreateStudyGroup = () => {
           onChange={(e) => setDeadline(e.target.value)}
         />
       </InputRow>
-      <InputRow>
-        <label>키워드 (해시태그)</label>
-        <TextInput
-          type="text"
-          placeholder="#자바, #리액트 등 쉼표로 구분해주세요"
-          disabled // 임시 비활성화
+      <TagInput 
+          tags={tags} 
+          setTags={setTags}
+          placeholder="해시태그를 입력하고 Enter를 누르세요"
+          label="해시태그"
+          labelBold={false}
         />
-        <small style={{ color: "gray" }}>todo : 해시태그 구현</small>
-      </InputRow>
 
       <SectionTitle>2. 스터디 그룹에 대해 소개해주세요.</SectionTitle>
       <Divider />

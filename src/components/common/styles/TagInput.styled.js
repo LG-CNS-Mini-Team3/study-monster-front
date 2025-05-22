@@ -7,7 +7,7 @@ export const TagFormGroup = styled.div`
 `;
 
 export const Label = styled.label`
-  font-weight: bold;
+  font-weight: ${(props) => (props.$bold ? 'bold' : 'normal')};
   font-size: 16px;
 `;
 
