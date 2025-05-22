@@ -4,6 +4,7 @@ import CreateStudyGroup from "./pages/studyGroup/CreateStudyGroup";
 import StudyGroupDetail from "./pages/studyGroup/StudyGroupDetail";
 import BoardInfo from "./pages/board/BoardInfo.jsx";
 import WriteBoard from "./components/board/WriteBoard.jsx";
+import EditBoard from "./components/board/EditBoard.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path={`/study-groups/:studyId`} element={<StudyGroupDetail />} />
         <Route path={`/boards/:boardId`} element={<BoardInfo />} />
         <Route path="/boards/create" element={<WriteBoard />} />
+        <Route path={`/boards/:boardId/update`} element={<EditBoard />} />
       </Routes>
     </>
   );
