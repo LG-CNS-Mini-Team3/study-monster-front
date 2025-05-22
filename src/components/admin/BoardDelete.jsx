@@ -11,13 +11,14 @@ const BoardDelete = ({ boardId, userId, isAdmin, isAuthor }) => {
         try {
             await axios.post("http://localhost:8080/boards/delete", {
                 boardId,
-                userId
+                userId,
             });
+
             alert("게시글이 삭제되었습니다.");
-            navigate("/boards/list");
+            navigate("/boards");
         } catch (err) {
             console.error("게시글 삭제 오류:", err);
-            alert("삭제 중 오류가 발생했습니다.");
+            alert("삭제 권한이 없습니다.");
         }
     };
 

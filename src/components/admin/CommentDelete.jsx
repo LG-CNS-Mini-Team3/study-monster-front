@@ -8,13 +8,14 @@ const CommentDelete = ({ commentId, userId, isAdmin, isAuthor, onDeleteSuccess }
         try {
             await axios.post("http://localhost:8080/comments/delete", {
                 commentId,
-                userId
+                userId,
             });
+
             alert("댓글이 삭제되었습니다.");
             onDeleteSuccess(commentId);
         } catch (error) {
             console.error("댓글 삭제 실패:", error);
-            alert("삭제 중 오류 발생");
+            alert("삭제 권한이 없습니다.");
         }
     };
 
