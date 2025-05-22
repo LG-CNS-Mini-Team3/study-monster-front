@@ -13,7 +13,7 @@ function App() {
         <Route path="/study-groups/new" element={<CreateStudyGroup />} />
         <Route path={`/study-groups/:studyId`} element={<StudyGroupDetail />} />
         <Route path={`/boards/:boardId`} element={<BoardInfo />} />
-        <Route path="/board/create" element={<WriteBoard />} />
+        <Route path="/boards/new" element={<WriteBoard />} />
       </Routes>
     </>
   );
