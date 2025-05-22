@@ -44,9 +44,10 @@ const StudyGroupCard = ({
       <CardTitle>{name}</CardTitle>
 
       <TagList>
-        {tags.map((tag, index) => (
+        {tags.slice(0, 3).map((tag, index) => (
           <StudyTag key={tag.id || index} tag={tag} />
         ))}
+        {tags.length > 3 && <span>+{tags.length - 3}개</span>}
       </TagList>
 
       <ParticipantStatus>
