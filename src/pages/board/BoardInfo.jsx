@@ -95,10 +95,11 @@ const BoardInfo = () => {
                 onEdit={handleEdit}
                 onDelete={handleDelete}
             />
-            <BoardContent content={boardInfo.content} />
-            <BoardTag tagList={tagList} />
-            <div ref={commentComponentRef} />
-            <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId} />
+            <BoardContent content={boardInfo.content}/>
+            <BoardTag tagList={tagList}/>
+            <div ref={commentComponentRef}/>
+            <Comment userId = {1} boardId={boardId}/>
+            <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId}/>
         </>
     );
 };
