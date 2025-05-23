@@ -35,7 +35,6 @@ const WriteBoard = () => {
       
       const boardData = {
         ...formData,
-        userId, // 실제 환경에서는 제거하고 인증 정보 활용
       };
       
       const response = await createBoard(boardData);

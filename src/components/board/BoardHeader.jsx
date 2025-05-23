@@ -52,7 +52,7 @@ const BoardHeader = ({boardId, title, created_at, updated_at, userId, nickname, 
                 <BookmarkButton userId = {loginId} boardId = {boardId}/>
                 <CommentCountDiv onClick={onClickCommentCountDiv}>댓글 {commentCount}</CommentCountDiv>
                 
-                {/* {isAuthor && ( */}
+                {isAuthor && (
                     <OptionsContainer>
                         <IconButton 
                             onClick={toggleOptions}
@@ -75,7 +75,7 @@ const BoardHeader = ({boardId, title, created_at, updated_at, userId, nickname, 
                             </OptionsMenu>
                         )}
                     </OptionsContainer>
-                {/* )} */}
+                )}
             </RightSectionDiv>
         </BoardHeaderDiv>
     )

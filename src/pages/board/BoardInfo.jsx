@@ -95,8 +95,8 @@ const BoardInfo = () => {
         callUserInfoApi(setUserInfo);
     }, [boardId]);
 
-    // TODO: 현재 사용자가 작성자인지 확인
-    // const isAuthor = 
+    
+    const isAuthor = userInfo.id === boardInfo.userId;
 
     const handleEdit = (boardId) => {
         navigate(`/boards/${boardId}/update`);
@@ -127,7 +127,7 @@ const BoardInfo = () => {
                 commentCount={commentList.length}
                 writerImgSrc={writerImgSrc}
                 commentComponentRef={commentComponentRef}
-                // isAuthor={isAuthor}
+                isAuthor={isAuthor}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
                 //권순영 추가
