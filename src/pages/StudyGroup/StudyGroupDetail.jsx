@@ -23,7 +23,7 @@ const initData = {
   current: 0,
   status: "",
   tagList: [],
-  userId: 1,
+  userId: null,
 };
 
 const writerImgSrc =
@@ -73,7 +73,12 @@ const StudyGroupDetail = () => {
           if (study.status === "모집완료") return;
           const confirmed = window.confirm("신청하시겠습니까?");
           if (confirmed) {
-            joinStudy(studyId);
+            const token = localStorage.getItem("accessToken");
+            if (!token) {
+              alert("로그인 후 신청이 가능합니다.");
+              return;
+            }
+            joinStudy(studyId, token);
           }
         }}
       >
