@@ -11,6 +11,7 @@ import Like from "../../components/Like/Like.jsx";
 import Comment from "../../components/Caption/Comment.jsx";
 import BookmarkList from "../../components/bookmark/BookmarkList.jsx";
 import { listComment } from "../../api/comment/comment_api.js";
+import { fetchUser } from "../../api/user/AuthApi.jsx";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -27,6 +28,13 @@ const callBoardCommentApi = async (boardId, setCommentList) => {
 const callBoardTagApi = (boardId, setTagList) => {
     console.log(`board ${boardId}의 tag API 연결 요망`); // TODO board 의 tag API 연결 요망
 };
+
+//권순영 추가
+const callUserInfoApi = (setUserInfo) => {
+  fetchUser().then((response) => {
+    setUserInfo(response)
+  })
+}
 
 const initBoardData = {
     boardId: 0,
@@ -46,6 +54,14 @@ const initTagListData = [
     { tagName: "컴포넌트", tagId: 3 },
 ];
 
+//권순영 추가
+const initUserData = {
+  id: 0,
+  email: "",
+  nickname: "",
+  name: ""
+}
+
 const writerImgSrc = "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png"; // TODO 프로필 이미지 기능 추가
 
 const BoardInfo = () => {
@@ -55,6 +71,10 @@ const BoardInfo = () => {
     const [commentList, setCommentList] = useState(initCommentListData);
     const [tagList, setTagList] = useState(initTagListData);
     const [isModalOpen, setModalOpen] = useState(false);
+
+    //권순영 추가
+    const [userInfo, setUserInfo] = useState(initUserData);
+
     const commentComponentRef = useRef();
     usePageTitle(`${boardInfo.title}`);
 
@@ -62,6 +82,7 @@ const BoardInfo = () => {
         callBoardInfoApi(boardId, setBoardInfo);
         callBoardCommentApi(boardId, setCommentList);
         callBoardTagApi(boardId, setTagList);
+        callUserInfoApi(setUserInfo);
     }, [boardId]);
 
     // TODO: 현재 사용자가 작성자인지 확인
@@ -100,13 +121,14 @@ const BoardInfo = () => {
                 // isAuthor={isAuthor}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
+                //권순영 추가
+                loginId={userInfo.id}
             />
             <BoardContent content={boardInfo.content}/>
             <BoardTag tagList={tagList}/>
             <div ref={commentComponentRef}/>
-            <Like userId = {1} boardId = {boardId}/>
-            <Comment userId = {1} boardId={boardId}/>
-            <div ref={commentComponentRef}/>
+            <Like userId = {userInfo.id} boardId = {boardId}/>
+            <Comment userId = {userInfo.id} boardId={boardId}/>
             <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId}/>
         </>
     );
