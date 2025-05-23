@@ -5,6 +5,7 @@ import getBoardInfo from '../../api/board/getBoardInfo';
 import getBoardTags from '../../api/board/getBoardTags';
 import updateBoard from '../../api/board/updateBoard';
 import { EditSection, LoadingIndicator } from './styles/EditBoard.styled';
+import { fetchUser } from '../../api/user/AuthApi';
 
 const EditBoard = () => {
   const [boardInfo, setBoardInfo] = useState(null);
@@ -17,11 +18,19 @@ const EditBoard = () => {
   const navigate = useNavigate();
   
   // 임시: 실제로는 로그인 상태에서 가져온 유저 ID 사용
-  const userId = 1; // 로그인된 사용자 ID
+  const [userId, setUserId] = useState(); // 로그인된 사용자 ID
+
+  //권순영 추가
+  const callUserInfoApi = () => {
+    fetchUser().then((response) => {
+      setUserId(response.id)
+    })
+  }
 
 
   // 게시글 데이터와 태그 로드
   useEffect(() => {
+    callUserInfoApi();
     const fetchBoardData = async () => {
       try {
         setIsLoading(true);

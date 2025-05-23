@@ -17,7 +17,7 @@ const MyPage = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  const [id, setId] = useState("");
+  const [id, setId] = useState();
 
   const userInfo = async () => {
     setLoading(true);
@@ -57,7 +57,7 @@ const MyPage = () => {
 
   useEffect(() => {
     if (user) {
-      setId(user.id)
+      setId(user.id);
       setName(user.name);
       setNickname(user.nickname);
       setEmail(user.email);
@@ -148,7 +148,8 @@ const MyPage = () => {
   return (
     <>
       <Containersize>
-        <BookmarkList userId = {id}/>
+        <h2 className="text-start mb-4 mt-3">북마크</h2>
+        {id && <BookmarkList userId = {id}/>}
         <h2 className="text-start mb-4 mt-3">회원정보</h2>
 
         <Form

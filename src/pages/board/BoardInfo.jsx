@@ -12,6 +12,8 @@ import Comment from "../../components/Caption/Comment.jsx";
 import BookmarkList from "../../components/bookmark/BookmarkList.jsx";
 import { listComment } from "../../api/comment/comment_api.js";
 import { fetchUser } from "../../api/user/AuthApi.jsx";
+import deleteBoard from "../../api/board/deleteBoard.js";
+import getBoardTags from "../../api/board/getBoardTags.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -20,14 +22,22 @@ const callBoardInfoApi = (boardId, setBoardInfo) => {
 };
 
 const callBoardCommentApi = async (boardId, setCommentList) => {
-    console.log(`board ${boardId}의 comment API 연결 요망`); // TODO board 의 comment API 연결 요망
     const comments = await listComment(boardId)
     setCommentList(comments)
 };
 
 const callBoardTagApi = (boardId, setTagList) => {
-    console.log(`board ${boardId}의 tag API 연결 요망`); // TODO board 의 tag API 연결 요망
+    getBoardTags(boardId)
+        .then((response) => {
+            console.log(response)
+            setTagList(response);
+        })
+        .catch((error) => {
+            console.error('태그 조회 실패:', error);
+            setTagList([]);
+        });
 };
+
 
 //권순영 추가
 const callUserInfoApi = (setUserInfo) => {
@@ -49,9 +59,9 @@ const initBoardData = {
 
 const initCommentListData = [{}, {}, {}];
 const initTagListData = [
-    { tagName: "figma", tagId: 1 },
-    { tagName: "UI/UX", tagId: 2 },
-    { tagName: "컴포넌트", tagId: 3 },
+    { name: "figma", id: 1 },
+    { name: "UI/UX", id: 2 },
+    { name: "컴포넌트", id: 3 },
 ];
 
 //권순영 추가
@@ -85,13 +95,12 @@ const BoardInfo = () => {
         callUserInfoApi(setUserInfo);
     }, [boardId]);
 
-    // TODO: 현재 사용자가 작성자인지 확인
-    // const isAuthor = 
+    
+    const isAuthor = userInfo.id === boardInfo.userId;
 
     const handleEdit = (boardId) => {
         navigate(`/boards/${boardId}/update`);
     };
-
     const handleDelete = (boardId) => {
         if (window.confirm("정말 삭제하시겠습니까?")) {
             deleteBoard(boardId)
@@ -118,7 +127,7 @@ const BoardInfo = () => {
                 commentCount={commentList.length}
                 writerImgSrc={writerImgSrc}
                 commentComponentRef={commentComponentRef}
-                // isAuthor={isAuthor}
+                isAuthor={isAuthor}
                 onEdit={handleEdit}
                 onDelete={handleDelete}
                 //권순영 추가

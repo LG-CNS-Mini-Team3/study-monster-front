@@ -75,7 +75,9 @@ const Header = () => {
                       className="d-flex align-items-center"
                       onClick={() => navigate("boards/new")}
                     >
-                      <Edit className="me-1" size={18} /> 기록
+                      <Edit className="me-1" size={18} onClick={() => {
+                        navigate("/boards/new")
+                      }}/> 기록
                     </Button>
                   </Nav.Item>
                   <Nav.Item className="me-3">
