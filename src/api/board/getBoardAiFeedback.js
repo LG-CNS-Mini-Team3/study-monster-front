@@ -1,5 +1,12 @@
 async function getBoardAiFeedback(boardId) {
-    return fetch(`http://127.0.0.1:8080/boards/${boardId}/feedback`)
+    return fetch(
+        `http://127.0.0.1:8080/boards/${boardId}/feedback`,
+        {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+            }
+        }
+    )
         .then((response) => {
             if (!response.ok) {
                 console.log("백엔드 통신 에러");

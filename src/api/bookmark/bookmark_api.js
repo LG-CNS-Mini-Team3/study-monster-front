@@ -6,6 +6,7 @@ export const checkBookmark = async (body) => {
     const res = await fetch(`${API_BASE_URL}/check`, {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -27,6 +28,7 @@ export const addBookmark = async (body) => {
     const res = await fetch(`${API_BASE_URL}`, {
       method: "POST",
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -46,6 +48,7 @@ export const removeBookmark = async (body) => {
     const res = await fetch(`${API_BASE_URL}`, {
       method: "DELETE",
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
@@ -59,10 +62,13 @@ export const removeBookmark = async (body) => {
   }
 };
 
-export const getBookmark = async (userId) => {
+export const getBookmark = async (userId) => { // TODO API에러
   try {
     const res = await fetch(`${API_BASE_URL}/list/${userId}`, {
-      method: "GET"
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+      }
     });
 
     if (!res.ok) throw new Error("북마크 불러오기 실패");

@@ -6,6 +6,7 @@ const updateBoard = async (boardId, boardData) => {
     const response = await fetch(`${API_BASE_URL}/boards/${boardId}`, {
       method: 'PUT',
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(boardData),

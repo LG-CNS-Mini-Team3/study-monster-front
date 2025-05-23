@@ -5,6 +5,7 @@ const deleteBoard = async (boardId) => {
     const response = await fetch(`${API_BASE_URL}/boards/${boardId}`, {
       method: 'DELETE',
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         'Content-Type': 'application/json',
       },
     });

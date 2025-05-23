@@ -8,7 +8,10 @@ const Paging = () => {
 
     const fetchBoards = (pageNum) => {
         axios.get(`http://localhost:8080/boards`, {
-            params: { page: pageNum, size: 5 }
+            params: { page: pageNum, size: 5 },
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+            }
         })
             .then(res => {
                 setBoards(res.data.content);

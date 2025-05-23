@@ -5,6 +5,7 @@ export const createComment = async (body) => {
     const res = await fetch(API_BASE_URL + "/add", {
       method: "post",
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: body,
@@ -22,11 +23,15 @@ export const createComment = async (body) => {
   }
 };
 
-export const listComment = async (num) => {
+export const listComment = async (num) => { // TODO API에러
   try {
     const res = await fetch(API_BASE_URL + "/list/"+ num, {
-      method: "get"
+      method: "get",
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+        }
     });
+      console.log(res);
     if (res.ok) {
       const data = await res.json();
       return data;
@@ -46,6 +51,7 @@ export const updateComment = async (body) => {
         const res = await fetch(API_BASE_URL + "/modify", {
             method: 'PUT',
             headers: {
+                "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
                 'Content-Type': 'application/json',
             },
             body: body
@@ -73,6 +79,7 @@ export const deleteComment = async (body) => {
     const res = await fetch(API_BASE_URL + "/delete", {
       method: "delete",
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: body

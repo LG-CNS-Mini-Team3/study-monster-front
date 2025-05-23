@@ -5,6 +5,7 @@ const getBoardTags = async (boardId) => {
     const response = await fetch(`${API_BASE_URL}/boards/${boardId}/tags`, {
       method: 'GET',
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         'Content-Type': 'application/json',
       },
     });

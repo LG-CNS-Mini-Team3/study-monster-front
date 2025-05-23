@@ -10,7 +10,7 @@ const Comment = ({userId, boardId}) => {
 
   useEffect(() => {
     async function temp() {
-      const data = await listComment(boardId);
+      // const data = await listComment(boardId); // TODO API 에러
       setComments(data);
     }
     temp();

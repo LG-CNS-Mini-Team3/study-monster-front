@@ -12,6 +12,7 @@ import Comment from "../../components/Caption/Comment.jsx";
 import BookmarkList from "../../components/bookmark/BookmarkList.jsx";
 import { listComment } from "../../api/comment/comment_api.js";
 import { fetchUser } from "../../api/user/AuthApi.jsx";
+import deleteBoard from "../../api/board/deleteBoard.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -21,7 +22,7 @@ const callBoardInfoApi = (boardId, setBoardInfo) => {
 
 const callBoardCommentApi = async (boardId, setCommentList) => {
     console.log(`board ${boardId}의 comment API 연결 요망`); // TODO board 의 comment API 연결 요망
-    const comments = await listComment(boardId)
+    // const comments = await listComment(boardId) // TODO API 에러
     setCommentList(comments)
 };
 

@@ -19,7 +19,12 @@ const BoardList = () => {
             type
         };
 
-        axios.get(`http://localhost:8080/boards`, { params })
+        axios.get(`http://localhost:8080/boards`, {
+            params,
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+            }
+        })
             .then(res => {
                 if (res.data && Array.isArray(res.data.content)) {
                     setBoards(res.data.content);

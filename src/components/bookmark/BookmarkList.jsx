@@ -8,7 +8,7 @@ const BookmarkList = ({userId}) => {
 
     useEffect(() => {
         async function temp() {
-              const data = await getBookmark(userId);
+              // const data = await getBookmark(userId); //TODO API에러
               console.log(data)
               setBookmarks(data);
             }

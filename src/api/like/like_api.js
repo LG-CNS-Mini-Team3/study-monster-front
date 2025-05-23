@@ -1,6 +1,6 @@
 const API_BASE_URL = "http://localhost:8080/like";
 
-export const addLike = async (body) => {
+export const addLike = async (body) => { // TODO API에러
   try {
     const parsedBody = JSON.parse(body);
     if (hasLikedToday(parsedBody.user_id)) {
@@ -11,6 +11,7 @@ export const addLike = async (body) => {
     const res = await fetch(API_BASE_URL + "/add", {
       method: "post",
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: body,
@@ -34,6 +35,7 @@ export const isUserLiked = async (body) => {
     const res = await fetch(API_BASE_URL + "/check", {
       method: "get",
       headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
         "Content-Type": "application/json",
       },
       body: body,
@@ -44,10 +46,13 @@ export const isUserLiked = async (body) => {
   }
 };
 
-export const getLikeCount = async (boardId) => {
+export const getLikeCount = async (boardId) => {  // TODO API에러
   try {
     const res = await fetch(API_BASE_URL + "/get/"+ boardId, {
       method: "get",
+      headers: {
+        "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+      }
     });
     if (res.ok) {
       const data = await res.json();
