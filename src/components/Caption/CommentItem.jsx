@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { deleteComment, updateComment } from "../../api/comment_api";
+import { deleteComment, updateComment } from "../../api/comment/comment_api";
 import {
   CommentBoxItemWrapper,
   CommentBoxItemName,
@@ -9,7 +9,7 @@ import {
   CommentBoxItemIconButton,
 } from "./styles/CommentItem.styled";
 
-import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { CommentBoxButton, CommentBoxTextArea } from "./styles/Comment.styled";
 
 const CommentItem = ({ userId, item }) => {
@@ -17,29 +17,40 @@ const CommentItem = ({ userId, item }) => {
   const [editedContent, setEditedContent] = useState();
 
   return (
-    <CommentBoxItemWrapper id={item.id} key={item.id}user={item.userId} board={item.boardId}>
+    <CommentBoxItemWrapper
+      id={item.id}
+      key={item.id}
+      user={item.user_id}
+      board={item.board_id}
+    >
       <CommentBoxItemTitle>
-          <CommentBoxItemName>{item.username}</CommentBoxItemName>
-          <CommentBoxItemTime>(작성 {item.created_at} 수정 {item.created_at})</CommentBoxItemTime>
-        <CommentBoxItemIconButton icon={faPenToSquare} 
-            onClick={() => {
-              setIsEditing(!isEditing);
-              setEditedContent(item.content);
-            }}
-          >
-        </CommentBoxItemIconButton>
-        <CommentBoxItemIconButton icon={faTrash} 
+        <CommentBoxItemName>{item.username}</CommentBoxItemName>
+        <CommentBoxItemTime>
+          (작성 {item.created_at} 수정 {item.created_at})
+        </CommentBoxItemTime>
+        <CommentBoxItemIconButton
+          icon={faPenToSquare}
+          onClick={() => {
+            setIsEditing(!isEditing);
+            setEditedContent(item.content);
+          }}
+        ></CommentBoxItemIconButton>
+        <CommentBoxItemIconButton
+          icon={faTrash}
           type="submit"
           onClick={(e) => {
-            const li = e.currentTarget.closest("li")
-            const body = {
-                id: li.id,
-                user_id: userId
+            if (userId != item.userId) {
+              alert("작성자가 다릅니다.");
+              return;
             }
+            const li = e.currentTarget.closest("li");
+            const body = {
+              id: li.id,
+              user_id: userId,
+            };
             deleteComment(JSON.stringify(body));
           }}
-        >
-        </CommentBoxItemIconButton>
+        ></CommentBoxItemIconButton>
       </CommentBoxItemTitle>
       <CommentBoxItemContent>{item.content}</CommentBoxItemContent>
       {isEditing ? (
@@ -53,6 +64,11 @@ const CommentItem = ({ userId, item }) => {
           <br />
           <CommentBoxButton
             onClick={() => {
+              console.log(item.user_id, userId)
+              if (userId != item.user_id) {
+                alert("작성자가 다릅니다.");
+                return;
+              }
               const body = {
                 id: item.id,
                 user_id: userId,
@@ -68,9 +84,7 @@ const CommentItem = ({ userId, item }) => {
           </CommentBoxButton>
         </>
       ) : (
-        <>
-          
-        </>
+        <></>
       )}
     </CommentBoxItemWrapper>
   );

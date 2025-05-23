@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import CommentItem from "./CommentItem";
-import { createComment, listComment } from "../../api/comment_api";
+import { createComment, listComment } from "../../api/comment/comment_api";
 import { CommentBox, CommentBoxButton, CommentBoxItem, CommentBoxTextArea, CommentBoxWrapper } from "./styles/Comment.styled";
 import { useParams } from "react-router-dom";
 
 const Comment = ({userId, boardId}) => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
-  const params = useParams();
 
   useEffect(() => {
     async function temp() {
-      const data = await listComment(params.boardId);
+      const data = await listComment(boardId);
       setComments(data);
     }
     temp();
