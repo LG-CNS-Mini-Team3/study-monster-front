@@ -8,6 +8,9 @@ const Home = () => {
   const goToBoard = () => {
     navigate("/boards"); // 실제 라우터 경로에 맞춰서 수정
   };
+  const goToStudy = () => {
+    navigate("/study-groups");
+  };
 
   return (
     <Container>
@@ -18,7 +21,10 @@ const Home = () => {
         여러분의 성장 여정을 기록하고, 스터디원들과 함께 나누세요. 지금 바로
         시작할 수 있어요!
       </Description>
-      <Button onClick={goToBoard}>스터디 바로가기 →</Button>
+      <Button onClick={goToBoard}>스터디 바로가기 →</Button>{" "}
+      <Button onClick={goToStudy} style={{ marginTop: "1rem" }}>
+        스터디 그룹 바로가기 →
+      </Button>
     </Container>
   );
 };
