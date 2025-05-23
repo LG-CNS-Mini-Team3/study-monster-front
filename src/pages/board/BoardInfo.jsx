@@ -6,7 +6,11 @@ import BoardContent from "../../components/board/BoardContent.jsx";
 import BoardTag from "../../components/board/BoardTag.jsx";
 import usePageTitle from "../../utils/usePageTitle.js";
 import BoardFeedbackModal from "../../components/board/BoardFeedbackModal.jsx";
-import deleteBoard from "../../api/board/deleteBoard.js";
+import BookmarkButton from "../../components/bookmark/BookmarkButton.jsx";
+import Like from "../../components/Like/Like.jsx";
+import Comment from "../../components/Caption/Comment.jsx";
+import BookmarkList from "../../components/bookmark/BookmarkList.jsx";
+import { listComment } from "../../api/comment/comment_api.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -14,8 +18,10 @@ const callBoardInfoApi = (boardId, setBoardInfo) => {
     });
 };
 
-const callBoardCommentApi = (boardId, setCommentList) => {
+const callBoardCommentApi = async (boardId, setCommentList) => {
     console.log(`board ${boardId}의 comment API 연결 요망`); // TODO board 의 comment API 연결 요망
+    const comments = await listComment(boardId)
+    setCommentList(comments)
 };
 
 const callBoardTagApi = (boardId, setTagList) => {
@@ -95,10 +101,13 @@ const BoardInfo = () => {
                 onEdit={handleEdit}
                 onDelete={handleDelete}
             />
-            <BoardContent content={boardInfo.content} />
-            <BoardTag tagList={tagList} />
-            <div ref={commentComponentRef} />
-            <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId} />
+            <BoardContent content={boardInfo.content}/>
+            <BoardTag tagList={tagList}/>
+            <div ref={commentComponentRef}/>
+            <Like userId = {1} boardId = {boardId}/>
+            <Comment userId = {1} boardId={boardId}/>
+            <div ref={commentComponentRef}/>
+            <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId}/>
         </>
     );
 };
