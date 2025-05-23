@@ -22,7 +22,7 @@ export const ButtonWithBell = styled.div`
 export const MainContainer = styled.div`
   width: 100%;
   max-width: 1024px;
-  padding: 0 4cm;
+  padding: 0 5cm;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@ export const ContentWrapper = styled.div`
 export const CardList = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr); // 기본은 2개씩
-  gap: 50px;
+  gap: 40px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr; // 태블릿 이하에서는 1개씩

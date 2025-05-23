@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Navbar, Nav, Button, Container } from "react-bootstrap";
 import SignUpModal from "../Auth/signUpModal";
@@ -73,6 +73,7 @@ const Header = () => {
                     <Button
                       variant="success"
                       className="d-flex align-items-center"
+                      onClick={() => navigate("boards/new")}
                     >
                       <Edit className="me-1" size={18} onClick={() => {
                         navigate("/boards/new")
