@@ -63,44 +63,57 @@ const BoardInfo = () => {
     }, [boardId]);
 
     const handleEdit = (boardId) => {
-        navigate(`/boards/${boardId}/edit`);
+        const handleDelete = (boardId) => {
+            if (window.confirm("정말 삭제하시겠습니까?")) {
+                deleteBoard(boardId)
+                    .then(() => {
+                        alert("게시글이 삭제되었습니다.");
+                        navigate("/boards", { replace: true });
+                    })
+                    .catch((error) => {
+                        console.error("게시글 삭제 중 오류:", error);
+                        alert("게시글 삭제에 실패했습니다.");
+                    });
+            }
+            navigate(`/boards/${boardId}/edit`);
+        };
+
+        return (
+            <>
+                <BoardHeader
+                    boardId={boardInfo.boardId}
+                    title={boardInfo.title}
+                    created_at={boardInfo.created_at}
+                    updated_at={boardInfo.updated_at}
+                    userId={boardInfo.userId}
+                    nickname={boardInfo.nickname}
+                    commentCount={commentList.length}
+                    writerImgSrc={writerImgSrc}
+                    commentComponentRef={commentComponentRef}
+                    onEdit={handleEdit}
+                />
+
+                <BoardContent content={boardInfo.content} />
+
+                <BoardDelete
+                    boardId={boardInfo.boardId}
+                    userId={userId}
+                    isAdmin={isAdmin}
+                    isAuthor={isAuthor}
+                />
+
+                <BoardTag tagList={tagList} />
+
+                <div ref={commentComponentRef} />
+
+                <BoardFeedbackModal
+                    isModalOpen={isModalOpen}
+                    setModalOpen={setModalOpen}
+                    boardId={boardId}
+                />
+            </>
+        );
     };
-
-    return (
-        <>
-            <BoardHeader
-                boardId={boardInfo.boardId}
-                title={boardInfo.title}
-                created_at={boardInfo.created_at}
-                updated_at={boardInfo.updated_at}
-                userId={boardInfo.userId}
-                nickname={boardInfo.nickname}
-                commentCount={commentList.length}
-                writerImgSrc={writerImgSrc}
-                commentComponentRef={commentComponentRef}
-                onEdit={handleEdit}
-            />
-
-            <BoardContent content={boardInfo.content} />
-
-            <BoardDelete
-                boardId={boardInfo.boardId}
-                userId={userId}
-                isAdmin={isAdmin}
-                isAuthor={isAuthor}
-            />
-
-            <BoardTag tagList={tagList} />
-
-            <div ref={commentComponentRef} />
-
-            <BoardFeedbackModal
-                isModalOpen={isModalOpen}
-                setModalOpen={setModalOpen}
-                boardId={boardId}
-            />
-        </>
-    );
-};
+}
 
 export default BoardInfo;
