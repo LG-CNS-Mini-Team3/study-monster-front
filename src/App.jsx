@@ -29,7 +29,7 @@ function App() {
         <Route path="/boards/new" element={<WriteBoard />} />
         <Route path={`/boards`} element={<BoardList />} />{" "}
         <Route path={`/boards/:boardId`} element={<BoardInfo />} />
-        <Route path={`/boards/:boardId/edit`} element={<EditBoard />} />
+        <Route path={`/boards/:boardId/update`} element={<EditBoard />} />
       </Routes>
     </>
   );
