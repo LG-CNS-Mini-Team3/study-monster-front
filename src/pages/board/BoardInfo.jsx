@@ -6,8 +6,13 @@ import BoardContent from "../../components/board/BoardContent.jsx";
 import BoardTag from "../../components/board/BoardTag.jsx";
 import usePageTitle from "../../utils/usePageTitle.js";
 import BoardFeedbackModal from "../../components/board/BoardFeedbackModal.jsx";
-import BoardDelete from "../../components/board/BoardDelete.jsx"; // ✅ 삭제 컴포넌트 import
-import checkAuth from "../../utils/checkAuth.js"; // ✅ 로그인 유저 확인 util
+import BoardDelete from "../../components/board/BoardDelete.jsx";
+import checkAuth from "../../utils/checkAuth.js";
+import BookmarkButton from "../../components/bookmark/BookmarkButton.jsx";
+import Like from "../../components/Like/Like.jsx";
+import Comment from "../../components/Caption/Comment.jsx";
+import BookmarkList from "../../components/bookmark/BookmarkList.jsx";
+import { listComment } from "../../api/comment/comment_api.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -15,8 +20,11 @@ const callBoardInfoApi = (boardId, setBoardInfo) => {
     });
 };
 
-const callBoardCommentApi = (boardId, setCommentList) => {
-    console.log(`board ${boardId}의 comment API 연결 요망`); // TODO: 댓글 API 연결
+
+const callBoardCommentApi = async (boardId, setCommentList) => {
+    console.log(`board ${boardId}의 comment API 연결 요망`); // TODO board 의 comment API 연결 요망
+    const comments = await listComment(boardId)
+    setCommentList(comments)
 };
 
 const callBoardTagApi = (boardId, setTagList) => {
@@ -78,6 +86,8 @@ const BoardInfo = () => {
             navigate(`/boards/${boardId}/edit`);
         };
 
+
+
         return (
             <>
                 <BoardHeader
@@ -94,23 +104,13 @@ const BoardInfo = () => {
                 />
 
                 <BoardContent content={boardInfo.content} />
-
-                <BoardDelete
-                    boardId={boardInfo.boardId}
-                    userId={userId}
-                    isAdmin={isAdmin}
-                    isAuthor={isAuthor}
-                />
-
                 <BoardTag tagList={tagList} />
-
                 <div ref={commentComponentRef} />
+                <Like userId={1} boardId={boardId} />
+                <Comment userId={1} boardId={boardId} />
+                <div ref={commentComponentRef} />
+                <BoardFeedbackModal isModalOpen={isModalOpen} setModalOpen={setModalOpen} boardId={boardId} />
 
-                <BoardFeedbackModal
-                    isModalOpen={isModalOpen}
-                    setModalOpen={setModalOpen}
-                    boardId={boardId}
-                />
             </>
         );
     };
