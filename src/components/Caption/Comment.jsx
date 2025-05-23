@@ -22,7 +22,8 @@ const Comment = ({userId, boardId}) => {
         <CommentBoxTextArea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          placeholder={"댓글을 작성해 주세요."}
+          placeholder={userId==""?"먼저 로그인이 필요합니다":"댓글을 작성해 주세요."}
+          disabled={userId==""?true:false}
         />
         <div>
           <CommentBoxButton

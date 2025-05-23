@@ -5,6 +5,7 @@ import { fetchUser, updateUser, deleteUser } from "../../api/user/AuthApi";
 import { useNavigate } from "react-router-dom";
 import Header from "../header/Header";
 import { Containersize } from "./styles/MyPage.styled";
+import BookmarkList from "../bookmark/BookmarkList";
 
 const MyPage = () => {
   const [name, setName] = useState("");
@@ -15,6 +16,8 @@ const MyPage = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const [id, setId] = useState("");
 
   const userInfo = async () => {
     setLoading(true);
@@ -54,6 +57,7 @@ const MyPage = () => {
 
   useEffect(() => {
     if (user) {
+      setId(user.id)
       setName(user.name);
       setNickname(user.nickname);
       setEmail(user.email);
@@ -144,6 +148,7 @@ const MyPage = () => {
   return (
     <>
       <Containersize>
+        <BookmarkList userId = {id}/>
         <h2 className="text-start mb-4 mt-3">회원정보</h2>
 
         <Form
