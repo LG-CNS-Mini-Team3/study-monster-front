@@ -62,7 +62,7 @@ const Header = () => {
             style={{ display: "flex", alignItems: "center" }}
           >
             <SvgIcon />
-            <span style={{ fontWeight: "bold" }}>studyMonster</span>
+            <span style={{ fontWeight: "bold" }}>StudyMonster</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
