@@ -25,7 +25,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/study-groups" element={<StudyGroupList />} />
         <Route path="/study-groups/new" element={<CreateStudyGroup />} />
-        <Route path={`/study-groups/:boardId`} element={<StudyGroupDetail />} />
+        <Route path={`/study-groups/:studyId`} element={<StudyGroupDetail />} />
         <Route path="/boards/new" element={<WriteBoard />} />
         <Route path={`/boards`} element={<BoardList />} />{" "}
         <Route path={`/boards/:boardId`} element={<BoardInfo />} />
