@@ -1,4 +1,4 @@
-import { replace, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import getBoardInfo from "../../api/board/getBoardInfo.js";
 import BoardHeader from "../../components/board/BoardHeader.jsx";
@@ -6,6 +6,8 @@ import BoardContent from "../../components/board/BoardContent.jsx";
 import BoardTag from "../../components/board/BoardTag.jsx";
 import usePageTitle from "../../utils/usePageTitle.js";
 import BoardFeedbackModal from "../../components/board/BoardFeedbackModal.jsx";
+import BoardDelete from "../../components/board/BoardDelete.jsx";
+import checkAuth from "../../utils/checkAuth.js";
 import BookmarkButton from "../../components/bookmark/BookmarkButton.jsx";
 import Like from "../../components/Like/Like.jsx";
 import Comment from "../../components/Caption/Comment.jsx";
@@ -19,6 +21,7 @@ const callBoardInfoApi = (boardId, setBoardInfo) => {
     });
 };
 
+
 const callBoardCommentApi = async (boardId, setCommentList) => {
     console.log(`board ${boardId}의 comment API 연결 요망`); // TODO board 의 comment API 연결 요망
     const comments = await listComment(boardId)
@@ -26,7 +29,7 @@ const callBoardCommentApi = async (boardId, setCommentList) => {
 };
 
 const callBoardTagApi = (boardId, setTagList) => {
-    console.log(`board ${boardId}의 tag API 연결 요망`); // TODO board 의 tag API 연결 요망
+    console.log(`board ${boardId}의 tag API 연결 요망`); // TODO: 태그 API 연결
 };
 
 //권순영 추가
@@ -54,6 +57,7 @@ const initTagListData = [
     { tagName: "컴포넌트", tagId: 3 },
 ];
 
+
 //권순영 추가
 const initUserData = {
   id: 0,
@@ -63,6 +67,7 @@ const initUserData = {
 }
 
 const writerImgSrc = "https://cdn.pixabay.com/photo/2023/02/18/11/00/icon-7797704_1280.png"; // TODO 프로필 이미지 기능 추가
+
 
 const BoardInfo = () => {
     const { boardId } = useParams();
@@ -78,6 +83,9 @@ const BoardInfo = () => {
     const commentComponentRef = useRef();
     usePageTitle(`${boardInfo.title}`);
 
+    const { userId, isAdmin } = checkAuth(); // ✅ 현재 로그인 유저 정보 가져오기
+    const isAuthor = boardInfo.userId === userId; // ✅ 작성자 여부 확인
+
     useEffect(() => {
         callBoardInfoApi(boardId, setBoardInfo);
         callBoardCommentApi(boardId, setCommentList);
@@ -85,26 +93,23 @@ const BoardInfo = () => {
         callUserInfoApi(setUserInfo);
     }, [boardId]);
 
-    // TODO: 현재 사용자가 작성자인지 확인
-    // const isAuthor = 
-
     const handleEdit = (boardId) => {
-        navigate(`/boards/${boardId}/update`);
-    };
+        const handleDelete = (boardId) => {
+            if (window.confirm("정말 삭제하시겠습니까?")) {
+                deleteBoard(boardId)
+                    .then(() => {
+                        alert("게시글이 삭제되었습니다.");
+                        navigate("/boards", { replace: true });
+                    })
+                    .catch((error) => {
+                        console.error("게시글 삭제 중 오류:", error);
+                        alert("게시글 삭제에 실패했습니다.");
+                    });
+            }
+            navigate(`/boards/${boardId}/edit`);
+        };
 
-    const handleDelete = (boardId) => {
-        if (window.confirm("정말 삭제하시겠습니까?")) {
-            deleteBoard(boardId)
-                .then(() => {
-                    alert("게시글이 삭제되었습니다.");
-                    navigate("/boards", {replace:true});
-                })
-                .catch((error) => {
-                    console.error("게시글 삭제 중 오류:", error);
-                    alert("게시글 삭제에 실패했습니다.");
-                });
-        }
-    };
+
 
     return (
         <>

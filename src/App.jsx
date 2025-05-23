@@ -1,10 +1,13 @@
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import BoardInfo from "./pages/board/BoardInfo.jsx";
 import BoardList from "./pages/board/BoardList.jsx";
 import WriteBoard from "./components/board/WriteBoard.jsx";
 import EditBoard from "./components/board/EditBoard.jsx";
+import BoardList from "./pages/board/BoardList";
+import BoardDetail from "./pages/board/BoardDetail";
 import React from "react";
-import "./App.css";
 import StudyGroupList from "./pages/studyGroup/StudyGroupList";
 import CreateStudyGroup from "./pages/studyGroup/CreateStudyGroup";
 import StudyGroupDetail from "./pages/studyGroup/StudyGroupDetail";
@@ -21,6 +24,16 @@ function App() {
       </Header>
       <div style={{ paddingTop: "50px" }}></div>
       <Routes>
+        <Route path="/auth/MyPage" element={<MyPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/study-groups" element={<StudyGroupList />} />
+        <Route path="/study-groups/new" element={<CreateStudyGroup />} />
+        <Route path={`/study-groups/:studyId`} element={<StudyGroupDetail />} />
+        <Route path="/boards/new" element={<WriteBoard />} />
+        <Route path={`/boards`} element={<BoardList />} />
+        <Route path={`/boards/:boardId`} element={<BoardInfo />} />
+        <Route path={`/boards/:boardId/edit`} element={<EditBoard />} />
+        <Route path={`/boards/:boardId`} element={<BoardDetail />} />
         <Route path="/auth/MyPage" element={<MyPage/>} />
         <Route path="/" element={<Home/>} />
         <Route path="/study-groups" element={<StudyGroupList />} />

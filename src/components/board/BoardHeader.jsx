@@ -26,7 +26,7 @@ const BoardHeader = ({boardId, title, created_at, updated_at, userId, nickname, 
         if (onEdit) {
             onEdit(boardId);
         } else {
-            nav(`/boards/${boardId}/update`);
+            nav(`/boards/${boardId}/edit`);
         }
         setShowOptions(false);
     }
