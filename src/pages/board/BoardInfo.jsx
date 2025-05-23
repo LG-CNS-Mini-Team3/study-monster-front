@@ -12,6 +12,7 @@ import Comment from "../../components/Caption/Comment.jsx";
 import BookmarkList from "../../components/bookmark/BookmarkList.jsx";
 import { listComment } from "../../api/comment/comment_api.js";
 import { fetchUser } from "../../api/user/AuthApi.jsx";
+import deleteBoard from "../../api/board/deleteBoard.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -20,14 +21,21 @@ const callBoardInfoApi = (boardId, setBoardInfo) => {
 };
 
 const callBoardCommentApi = async (boardId, setCommentList) => {
-    console.log(`board ${boardId}의 comment API 연결 요망`); // TODO board 의 comment API 연결 요망
     const comments = await listComment(boardId)
     setCommentList(comments)
 };
 
 const callBoardTagApi = (boardId, setTagList) => {
-    console.log(`board ${boardId}의 tag API 연결 요망`); // TODO board 의 tag API 연결 요망
+    getBoardTags(boardId)
+        .then((response) => {
+            setTagList(response);
+        })
+        .catch((error) => {
+            console.error('태그 조회 실패:', error);
+            setTagList([]);
+        });
 };
+
 
 //권순영 추가
 const callUserInfoApi = (setUserInfo) => {
@@ -91,7 +99,6 @@ const BoardInfo = () => {
     const handleEdit = (boardId) => {
         navigate(`/boards/${boardId}/update`);
     };
-
     const handleDelete = (boardId) => {
         if (window.confirm("정말 삭제하시겠습니까?")) {
             deleteBoard(boardId)

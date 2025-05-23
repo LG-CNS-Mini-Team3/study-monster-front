@@ -1,15 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BoardForm from './BoardForm';
 import createBoard from '../../api/board/createBoard';
 import { WriteSection } from './styles/WriteBoard.styled';
+import { fetchUser } from '../../api/user/AuthApi';
 
 const WriteBoard = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   
   // 임시: 실제로는 로그인 상태에서 가져온 유저 ID 사용
-  const userId = 1; // 로그인된 사용자 ID
+  const [userId, setUserId] = useState(); // 로그인된 사용자 ID
+
+  //권순영 추가
+  const callUserInfoApi = () => {
+    fetchUser().then((response) => {
+      setUserId(response.id)
+    })
+  }
+
+  useEffect(() => {
+    callUserInfoApi();
+  });
   
   const navigate = useNavigate();
   
