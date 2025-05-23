@@ -1,3 +1,8 @@
+import { Route, Routes } from "react-router-dom";
+import BoardInfo from "./pages/board/BoardInfo.jsx";
+import BoardList from "./pages/board/BoardList.jsx";
+import WriteBoard from "./components/board/WriteBoard.jsx";
+import EditBoard from "./components/board/EditBoard.jsx";
 import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
