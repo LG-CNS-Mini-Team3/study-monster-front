@@ -1,12 +1,18 @@
-async function getStudyGroupList() {
-  return fetch("http://localhost:8080/study-groups") // 포트 확인!
-    .then((response) => {
-      if (!response.ok) {
-        console.log("백엔드 통신 에러");
-        throw new Error("백엔드 통신 에러");
-      }
-      return response.json();
-    });
-}
+const getStudyList = async () => {
+  const token = localStorage.getItem("accessToken");
 
-export default getStudyGroupList;
+  const res = await fetch("http://localhost:8080/study-groups", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    const msg = await res.text();
+    throw new Error("스터디 목록 조회 실패: " + msg);
+  }
+
+  return await res.json();
+};
+
+export default getStudyList;

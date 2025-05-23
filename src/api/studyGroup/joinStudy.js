@@ -1,8 +1,20 @@
-const joinStudy = async (studyId, userId = 1) => {
+const joinStudy = async (studyId) => {
+  const token = localStorage.getItem("accessToken"); // JWT 토큰 불러오기
+
+  if (!token) {
+    alert("로그인이 필요합니다.");
+    return;
+  }
+
   try {
     const res = await fetch(
-      `http://localhost:8080/study-groups/${studyId}/join?userId=${userId}`,
-      { method: "POST" }
+      `http://localhost:8080/study-groups/${studyId}/join`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     const msg = await res.text();
