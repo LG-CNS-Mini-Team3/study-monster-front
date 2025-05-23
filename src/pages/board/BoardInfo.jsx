@@ -63,7 +63,7 @@ const BoardInfo = () => {
     }, [boardId]);
 
     const handleEdit = (boardId) => {
-        navigate(`/boards/${boardId}/update`);
+        navigate(`/boards/${boardId}/edit`);
     };
 
     return (
