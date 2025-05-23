@@ -31,6 +31,11 @@ const CommentItem = ({ userId, item }) => {
         <CommentBoxItemIconButton
           icon={faPenToSquare}
           onClick={() => {
+            console.log(item.user_id, userId);
+            if (userId != item.user_id) {
+              alert("작성자가 다릅니다.");
+              return;
+            }
             setIsEditing(!isEditing);
             setEditedContent(item.content);
           }}
@@ -64,11 +69,6 @@ const CommentItem = ({ userId, item }) => {
           <br />
           <CommentBoxButton
             onClick={() => {
-              console.log(item.user_id, userId)
-              if (userId != item.user_id) {
-                alert("작성자가 다릅니다.");
-                return;
-              }
               const body = {
                 id: item.id,
                 user_id: userId,

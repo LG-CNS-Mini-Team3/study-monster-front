@@ -1,11 +1,14 @@
 const API_BASE_URL = 'http://localhost:8080';
 
+const token = localStorage.getItem("accessToken");
+
 const getBoardTags = async (boardId) => {
   try {
     const response = await fetch(`${API_BASE_URL}/boards/${boardId}/tags`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
     });
     

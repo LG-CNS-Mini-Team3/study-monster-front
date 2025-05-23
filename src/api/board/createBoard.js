@@ -1,11 +1,15 @@
 const API_BASE_URL = 'http://localhost:8080';
 
+const token = localStorage.getItem("accessToken");
+
 const createBoard = async (boardData) => {
+  
   try {
     const response = await fetch(`${API_BASE_URL}/boards`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: JSON.stringify(boardData),
     });

@@ -3,10 +3,16 @@ import fetchWithAuth from "../../utils/FetchUtils";
 
 const BASE_URL = "http://localhost:8080/auth";
 
+const token = localStorage.getItem("accessToken");
+
 export const fetchUser = async () => {
   try {
     const data = await fetchWithAuth("/user", {
       method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
     });
     return data;
   } catch (error) {
@@ -20,6 +26,10 @@ export const updateUser = async (userData) => {
   try {
     const data = await fetchWithAuth("/update", {
       method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
       body: userData, 
     });
     console.log("회원 정보 수정 완료:", data);
@@ -35,6 +45,10 @@ export const deleteUser = async () => {
   try {
     await fetchWithAuth("/delete", {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
     });
     console.log("회원 탈퇴 완료");
     return true;

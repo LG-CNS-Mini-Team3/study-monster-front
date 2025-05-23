@@ -11,8 +11,8 @@ const BoardTag = ({ tagList }) => {
     <BoardTagDiv>
       {tagList.map((tag) => {
         return (
-          <Badge key={tag.tagId} onClick={() => onClickTag(tag.tagId)}>
-            #{tag.tagName}
+          <Badge key={tag.id} onClick={() => onClickTag(tag.id)}>
+            #{tag.name}
           </Badge>
         );
       })}

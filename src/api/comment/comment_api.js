@@ -1,11 +1,14 @@
 const API_BASE_URL = "http://localhost:8080/comment";
 
+const token = localStorage.getItem("accessToken");
+
 export const createComment = async (body) => {
   try {
     const res = await fetch(API_BASE_URL + "/add", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: body,
     });
@@ -25,7 +28,11 @@ export const createComment = async (body) => {
 export const listComment = async (num) => {
   try {
     const res = await fetch(API_BASE_URL + "/list/"+ num, {
-      method: "get"
+      method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
     });
     if (res.ok) {
       const data = await res.json();
@@ -46,7 +53,8 @@ export const updateComment = async (body) => {
         const res = await fetch(API_BASE_URL + "/modify", {
             method: 'PUT',
             headers: {
-                'Content-Type': 'application/json',
+              "Content-Type": "application/json",
+              ...(token && { Authorization: `Bearer ${token}` }),
             },
             body: body
         })
@@ -74,6 +82,7 @@ export const deleteComment = async (body) => {
       method: "delete",
       headers: {
         "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: body
     });

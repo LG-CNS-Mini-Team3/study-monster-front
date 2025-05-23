@@ -1,5 +1,7 @@
 const API_BASE_URL = "http://localhost:8080/bookmark";
 
+const token = localStorage.getItem("accessToken");
+
 // 북마크 여부 확인
 export const checkBookmark = async (body) => {
   try {
@@ -7,6 +9,7 @@ export const checkBookmark = async (body) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: JSON.stringify(body),
     });
@@ -28,6 +31,7 @@ export const addBookmark = async (body) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: JSON.stringify(body),
     });
@@ -47,6 +51,7 @@ export const removeBookmark = async (body) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: JSON.stringify(body),
     });
@@ -62,7 +67,11 @@ export const removeBookmark = async (body) => {
 export const getBookmark = async (userId) => {
   try {
     const res = await fetch(`${API_BASE_URL}/list/${userId}`, {
-      method: "GET"
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+      },
     });
 
     if (!res.ok) throw new Error("북마크 불러오기 실패");
@@ -72,4 +81,4 @@ export const getBookmark = async (userId) => {
     console.error("북마크 불러오기 에러:", err);
     return false;
   }
-}
+};

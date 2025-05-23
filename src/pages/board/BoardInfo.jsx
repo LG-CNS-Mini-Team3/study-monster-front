@@ -13,6 +13,7 @@ import BookmarkList from "../../components/bookmark/BookmarkList.jsx";
 import { listComment } from "../../api/comment/comment_api.js";
 import { fetchUser } from "../../api/user/AuthApi.jsx";
 import deleteBoard from "../../api/board/deleteBoard.js";
+import getBoardTags from "../../api/board/getBoardTags.js";
 
 const callBoardInfoApi = (boardId, setBoardInfo) => {
     getBoardInfo(boardId).then((response) => {
@@ -28,6 +29,7 @@ const callBoardCommentApi = async (boardId, setCommentList) => {
 const callBoardTagApi = (boardId, setTagList) => {
     getBoardTags(boardId)
         .then((response) => {
+            console.log(response)
             setTagList(response);
         })
         .catch((error) => {
@@ -57,9 +59,9 @@ const initBoardData = {
 
 const initCommentListData = [{}, {}, {}];
 const initTagListData = [
-    { tagName: "figma", tagId: 1 },
-    { tagName: "UI/UX", tagId: 2 },
-    { tagName: "컴포넌트", tagId: 3 },
+    { name: "figma", id: 1 },
+    { name: "UI/UX", id: 2 },
+    { name: "컴포넌트", id: 3 },
 ];
 
 //권순영 추가

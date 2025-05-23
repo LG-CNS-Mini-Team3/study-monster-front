@@ -1,5 +1,7 @@
 const API_BASE_URL = "http://localhost:8080/like";
 
+const token = localStorage.getItem("accessToken");
+
 export const addLike = async (body) => {
   try {
     const parsedBody = JSON.parse(body);
@@ -12,6 +14,7 @@ export const addLike = async (body) => {
       method: "post",
       headers: {
         "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: body,
     });
@@ -35,6 +38,7 @@ export const isUserLiked = async (body) => {
       method: "get",
       headers: {
         "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
       },
       body: body,
     });
