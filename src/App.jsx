@@ -1,9 +1,4 @@
-import { Route, Routes } from "react-router-dom";
-import BoardInfo from "./pages/board/BoardInfo.jsx";
-import BoardList from "./pages/board/BoardList.jsx";
-import WriteBoard from "./components/board/WriteBoard.jsx";
-import EditBoard from "./components/board/EditBoard.jsx";
-import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import StudyGroupList from "./pages/studyGroup/StudyGroupList";
@@ -16,6 +11,7 @@ import MyPage from "./components/auth/MyPage.jsx";
 import Home from "./components/HomPage.jsx";
 import EditBoard from "./components/board/EditBoard.jsx";
 import WriteBoard from "./components/board/WriteBoard.jsx";
+import BoardList from "./pages/board/BoardList.jsx";
 
 function App() {
   return (
@@ -25,12 +21,13 @@ function App() {
       </Header>
       <div style={{ paddingTop: "50px" }}></div>
       <Routes>
-        <Route path="/auth/MyPage" element={<MyPage/>} />
-        <Route path="/" element={<Home/>} />
+        <Route path="/auth/MyPage" element={<MyPage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/study-groups" element={<StudyGroupList />} />
         <Route path="/study-groups/new" element={<CreateStudyGroup />} />
-        <Route path={`/study-groups/:boardId`} element={<StudyGroupDetail />} />
+        <Route path={`/study-groups/:studyId`} element={<StudyGroupDetail />} />
         <Route path="/boards/new" element={<WriteBoard />} />
+        <Route path={`/boards`} element={<BoardList />} />
         <Route path={`/boards/:boardId`} element={<BoardInfo />} />
         <Route path={`/boards/:boardId/edit`} element={<EditBoard />} />
       </Routes>
@@ -39,4 +36,3 @@ function App() {
 }
 
 export default App;
-
