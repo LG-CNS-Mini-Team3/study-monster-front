@@ -20,8 +20,8 @@ const CommentItem = ({ userId, item }) => {
     <CommentBoxItemWrapper
       id={item.id}
       key={item.id}
-      user={item.userId}
-      board={item.boardId}
+      user={item.user_id}
+      board={item.board_id}
     >
       <CommentBoxItemTitle>
         <CommentBoxItemName>{item.username}</CommentBoxItemName>
@@ -64,7 +64,8 @@ const CommentItem = ({ userId, item }) => {
           <br />
           <CommentBoxButton
             onClick={() => {
-              if (userId != item.userId) {
+              console.log(item.user_id, userId)
+              if (userId != item.user_id) {
                 alert("작성자가 다릅니다.");
                 return;
               }

@@ -104,7 +104,6 @@ const BoardInfo = () => {
             <BoardContent content={boardInfo.content}/>
             <BoardTag tagList={tagList}/>
             <div ref={commentComponentRef}/>
-            <BookmarkList userId = {1} />
             <Like userId = {1} boardId = {boardId}/>
             <Comment userId = {1} boardId={boardId}/>
             <div ref={commentComponentRef}/>
