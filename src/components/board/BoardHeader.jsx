@@ -6,7 +6,7 @@ import { MoreVertical, Edit, Trash2 } from "lucide-react"
 import BookmarkButton from "../bookmark/BookmarkButton.jsx";
 
 const BoardHeader = ({boardId, title, created_at, updated_at, userId, nickname, commentCount, writerImgSrc, commentComponentRef,
-    isAuthor, onEdit, onDelete
+    isAuthor, onEdit, onDelete, loginId
 }) => {
     let nav = useNavigate();
     const [showOptions, setShowOptions] = useState(false);
@@ -49,7 +49,7 @@ const BoardHeader = ({boardId, title, created_at, updated_at, userId, nickname, 
             </BoardHeaderInfoDIv>
 
             <RightSectionDiv>
-                <BookmarkButton userId = {1} boardId = {boardId}/>
+                <BookmarkButton userId = {loginId} boardId = {boardId}/>
                 <CommentCountDiv onClick={onClickCommentCountDiv}>댓글 {commentCount}</CommentCountDiv>
                 
                 {/* {isAuthor && ( */}

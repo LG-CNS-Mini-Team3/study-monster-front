@@ -5,20 +5,16 @@ import BoardInfo from "./pages/board/BoardInfo.jsx";
 import BoardList from "./pages/board/BoardList.jsx";
 import WriteBoard from "./components/board/WriteBoard.jsx";
 import EditBoard from "./components/board/EditBoard.jsx";
-import { Routes, Route } from "react-router-dom";
 import BoardList from "./pages/board/BoardList";
 import BoardDetail from "./pages/board/BoardDetail";
+import React from "react";
 import StudyGroupList from "./pages/studyGroup/StudyGroupList";
 import CreateStudyGroup from "./pages/studyGroup/CreateStudyGroup";
 import StudyGroupDetail from "./pages/studyGroup/StudyGroupDetail";
-import BoardInfo from "./pages/board/BoardInfo.jsx";
 import { Container } from "lucide-react";
 import Header from "./components/header/Header.jsx";
 import MyPage from "./components/auth/MyPage.jsx";
 import Home from "./components/HomPage.jsx";
-import EditBoard from "./components/board/EditBoard.jsx";
-import WriteBoard from "./components/board/WriteBoard.jsx";
-import BoardList from "./pages/board/BoardList.jsx";
 
 function App() {
   return (
